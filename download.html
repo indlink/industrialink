@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script>(function(){var t=localStorage.getItem('il-theme');if(!t){t='light';localStorage.setItem('il-theme','light');}document.documentElement.setAttribute('data-theme',t);if(t!=='dark')document.documentElement.classList.add('light');})();</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IndustriaLink — Download v1.0.0</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:#060a0e;--bg-2:#0b1118;--bg-3:#101820;--bg-card:#0d1520;
+  --teal:#00e5c9;--teal-l:#00d4bc;--teal-dark:#00b4a0;--teal-glow:rgba(0,229,201,0.22);
+  --teal-dim:rgba(0,229,201,0.07);--teal-border:rgba(0,229,201,0.18);
+  --cyan:#22d3ee;--green:#34d399;--red:#f87171;--amber:#fbbf24;--blue:#60a5fa;--purple:#a78bfa;
+  --text-1:#eef4fa;--text-2:#b8c8d8;--text-3:#6a8090;--text-4:#2e4050;
+  --border:rgba(255,255,255,0.055);--border-md:rgba(255,255,255,0.1);
+  --radius:10px;--radius-sm:7px;--radius-lg:16px;--transition:0.18s ease;
+  --topbar-h:62px;
+}
+html.light {
+  --bg:#eef2f7;--bg-2:#ffffff;--bg-3:#e2e8f0;--bg-card:#ffffff;
+  --teal:#007a70;--teal-dark:#005f58;--teal-glow:rgba(0,122,112,0.18);
+  --teal-dim:rgba(0,122,112,0.07);--teal-border:rgba(0,122,112,0.18);
+  --text-1:#0d1b2a;--text-2:#2d4059;--text-3:#5a7080;--text-4:#a0b4c0;
+  --border:rgba(0,0,0,0.07);--border-md:rgba(0,0,0,0.12);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text-2);font-family:'Space Grotesk',system-ui,sans-serif;font-size:14px;line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased;}
+body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;opacity:0.022;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");background-size:200px 200px;}
+
+/* ─── NAV ─── */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;height:var(--topbar-h);display:flex;align-items:center;justify-content:space-between;padding:0 1.75rem;background:rgba(6,10,14,0.82);border-bottom:1px solid var(--border);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);}
+html.light nav{background:rgba(238,242,247,0.88);}
+.nav-logo{display:flex;align-items:center;gap:0.75rem;text-decoration:none;}
+.nav-logo-mark{width:34px;height:34px;background:var(--teal);border-radius:9px;display:flex;align-items:center;justify-content:center;box-shadow:0 0 18px var(--teal-glow),0 0 40px rgba(0,229,201,0.08);flex-shrink:0;}
+.nav-logo-mark svg{width:18px;height:18px;fill:var(--bg);}
+.nav-logo-text{font-size:1.05rem;font-weight:700;color:var(--text-1);letter-spacing:-0.03em;}
+.nav-logo-text span{color:var(--teal);}
+.nav-links{display:flex;gap:0.125rem;list-style:none;}
+.nav-links a{padding:0.45rem 0.85rem;border-radius:var(--radius-sm);font-size:0.78rem;font-weight:500;color:var(--text-3);text-decoration:none;transition:var(--transition);letter-spacing:-0.01em;}
+.nav-links a:hover{color:var(--text-1);background:var(--bg-3);}
+.nav-actions{display:flex;align-items:center;gap:0.625rem;}
+.btn-theme{width:36px;height:36px;border-radius:var(--radius-sm);border:1px solid var(--border-md);background:transparent;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--text-3);transition:var(--transition);}
+.btn-theme:hover{border-color:var(--teal);color:var(--teal);}
+.btn-nav-cta{padding:0.5rem 1.15rem;border-radius:var(--radius-sm);background:var(--teal);color:var(--bg);font-size:0.78rem;font-weight:700;text-decoration:none;letter-spacing:-0.01em;transition:var(--transition);box-shadow:0 0 16px var(--teal-glow);}
+.btn-nav-cta:hover{background:var(--teal-dark);transform:translateY(-1px);}
+
+/* ─── SECTION UTILITIES ─── */
+.section-wrap{max-width:1100px;margin:0 auto;padding:0 1.75rem;}
+.eyebrow{font-family:'JetBrains Mono',monospace;font-size:0.6rem;font-weight:700;color:var(--teal);letter-spacing:0.16em;text-transform:uppercase;margin-bottom:0.875rem;display:flex;align-items:center;gap:0.5rem;}
+.eyebrow::before{content:'';width:18px;height:1px;background:var(--teal);opacity:0.6;}
+.section-h{font-family:'Space Grotesk',sans-serif;font-size:clamp(1.55rem,3.2vw,2rem);font-weight:700;letter-spacing:-0.035em;line-height:1.2;color:var(--text-1);}
+.section-p{margin-top:0.875rem;color:var(--text-3);font-size:0.875rem;line-height:1.8;max-width:440px;}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity 0.6s ease,transform 0.6s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+
+/* ─── HERO ─── */
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:calc(var(--topbar-h) + 5rem) 1.5rem 5rem;text-align:center;position:relative;overflow:hidden;}
+.hero-bg{position:absolute;inset:0;pointer-events:none;}
+.hero-bg-radial{position:absolute;inset:0;background:radial-gradient(ellipse 90% 55% at 50% -5%,rgba(0,229,201,0.085) 0%,transparent 60%),radial-gradient(ellipse 50% 35% at 80% 55%,rgba(34,211,238,0.035) 0%,transparent 50%),radial-gradient(ellipse 45% 35% at 15% 65%,rgba(96,165,250,0.025) 0%,transparent 50%);}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(0,229,201,0.035) 1px,transparent 1px),linear-gradient(90deg,rgba(0,229,201,0.035) 1px,transparent 1px);background-size:56px 56px;mask-image:radial-gradient(ellipse 85% 65% at 50% 0%,black 0%,transparent 70%);-webkit-mask-image:radial-gradient(ellipse 85% 65% at 50% 0%,black 0%,transparent 70%);}
+.hero-scan{position:absolute;inset:0;overflow:hidden;}
+.hero-scan::after{content:'';position:absolute;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent 0%,rgba(0,229,201,0.4) 30%,rgba(0,229,201,0.6) 50%,rgba(0,229,201,0.4) 70%,transparent 100%);animation:scan 7s ease-in-out infinite;top:var(--topbar-h);}
+@keyframes scan{0%{transform:translateY(0);opacity:0}8%{opacity:1}92%{opacity:1}100%{transform:translateY(100vh);opacity:0}}
+
+.hero-content{position:relative;z-index:1;max-width:800px;margin:0 auto;}
+.version-badge{display:inline-flex;align-items:center;gap:0.625rem;padding:0.38rem 1rem 0.38rem 0.65rem;border:1px solid var(--teal-border);border-radius:100px;background:rgba(0,229,201,0.045);font-family:'JetBrains Mono',monospace;font-size:0.63rem;font-weight:600;color:var(--teal);margin-bottom:2rem;letter-spacing:0.06em;animation:fadeUp 0.55s ease both;}
+.version-dot{width:7px;height:7px;border-radius:50%;background:var(--teal);animation:pulse-dot 2s ease-in-out infinite;}
+@keyframes pulse-dot{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.4;transform:scale(0.6)}}
+
+.hero h1{font-size:clamp(2.8rem,6.5vw,4.4rem);font-weight:700;letter-spacing:-0.045em;line-height:1.06;color:var(--text-1);animation:fadeUp 0.55s 0.08s ease both;}
+.hero h1 .accent{color:var(--teal);text-shadow:0 0 50px var(--teal-glow),0 0 90px rgba(0,229,201,0.07);}
+.hero-sub{margin-top:1.5rem;max-width:520px;margin-left:auto;margin-right:auto;font-size:0.94rem;color:var(--text-3);line-height:1.8;animation:fadeUp 0.55s 0.15s ease both;}
+
+/* ─── DOWNLOAD CARD ─── */
+.dl-card{margin:2.5rem auto 0;max-width:560px;border:1px solid var(--teal-border);border-radius:var(--radius-lg);background:linear-gradient(145deg,rgba(0,229,201,0.045) 0%,var(--bg-card) 60%);padding:2rem;box-shadow:0 0 60px rgba(0,229,201,0.06),0 20px 60px rgba(0,0,0,0.5);animation:fadeUp 0.55s 0.22s ease both;position:relative;overflow:hidden;}
+.dl-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--teal),transparent);}
+.dl-meta{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.5rem;flex-wrap:wrap;gap:0.75rem;}
+.dl-name{font-size:1.05rem;font-weight:700;letter-spacing:-0.025em;color:var(--text-1);}
+.dl-ver{font-family:'JetBrains Mono',monospace;font-size:0.62rem;font-weight:600;padding:0.28rem 0.7rem;border-radius:100px;background:var(--teal-dim);border:1px solid var(--teal-border);color:var(--teal);}
+.dl-info-row{display:flex;gap:0.5rem;flex-wrap:wrap;margin-bottom:1.75rem;}
+.dl-chip{display:flex;align-items:center;gap:0.35rem;padding:0.3rem 0.75rem;border-radius:var(--radius-sm);background:var(--bg-3);border:1px solid var(--border-md);font-family:'JetBrains Mono',monospace;font-size:0.62rem;color:var(--text-3);}
+.dl-chip svg{width:12px;height:12px;color:var(--teal);flex-shrink:0;}
+.btn-download{display:flex;align-items:center;justify-content:center;gap:0.75rem;width:100%;padding:1rem 1.5rem;border-radius:var(--radius);background:var(--teal);color:var(--bg);font-family:'Space Grotesk',sans-serif;font-size:0.9rem;font-weight:700;text-decoration:none;letter-spacing:-0.01em;border:none;cursor:pointer;box-shadow:0 0 28px var(--teal-glow),0 6px 24px rgba(0,0,0,0.4);transition:all 0.2s ease;position:relative;overflow:hidden;}
+.btn-download::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent 0%,rgba(255,255,255,0.08) 50%,transparent 100%);transform:translateX(-100%);transition:transform 0.55s ease;}
+.btn-download:hover{background:var(--teal-dark);transform:translateY(-2px);box-shadow:0 0 40px var(--teal-glow),0 12px 32px rgba(0,0,0,0.5);}
+.btn-download:hover::after{transform:translateX(100%);}
+.btn-download svg{width:18px;height:18px;flex-shrink:0;}
+.btn-download-sub{display:flex;align-items:center;gap:0.35rem;font-size:0.68rem;font-weight:500;opacity:0.65;}
+.dl-note{margin-top:1rem;text-align:center;font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:var(--text-4);letter-spacing:0.06em;}
+.dl-note a{color:var(--teal);text-decoration:none;}
+.dl-note a:hover{text-decoration:underline;}
+
+/* ─── WHAT'S INSIDE ─── */
+.inside{padding:6rem 0;}
+.inside-header{text-align:center;margin-bottom:3rem;}
+.inside-header .eyebrow{justify-content:center;}
+.inside-header .eyebrow::before{display:none;}
+.inside-header .section-p{margin-inline:auto;}
+.inside-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;}
+.inside-card{background:var(--bg-card);padding:1.625rem;transition:var(--transition);position:relative;overflow:hidden;}
+.inside-card::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 90% 70% at 0% 0%,rgba(0,229,201,0.055) 0%,transparent 55%);opacity:0;transition:opacity 0.3s ease;}
+.inside-card:hover{background:var(--bg-3);}
+.inside-card:hover::before{opacity:1;}
+.ic-icon{width:44px;height:44px;border-radius:var(--radius-sm);background:var(--teal-dim);border:1px solid var(--teal-border);display:flex;align-items:center;justify-content:center;color:var(--teal);margin-bottom:1.125rem;transition:var(--transition);}
+.inside-card:hover .ic-icon{background:var(--teal);color:var(--bg);box-shadow:0 0 18px var(--teal-glow);}
+.inside-card h3{font-size:0.92rem;font-weight:700;letter-spacing:-0.02em;margin-bottom:0.5rem;color:var(--text-1);}
+.inside-card p{font-size:0.79rem;color:var(--text-3);line-height:1.7;}
+.ic-file{margin-top:1rem;font-family:'JetBrains Mono',monospace;font-size:0.6rem;padding:0.22rem 0.6rem;border-radius:var(--radius-sm);background:var(--bg-3);border:1px solid var(--border);color:var(--text-3);display:inline-block;}
+
+/* ─── REQUIREMENTS ─── */
+.reqs{padding:6rem 0;background:var(--bg-2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
+.reqs-inner{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start;}
+.req-table{margin-top:1.75rem;border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;}
+.req-row{display:grid;grid-template-columns:1fr 1fr;border-bottom:1px solid var(--border);transition:var(--transition);}
+.req-row:last-child{border-bottom:none;}
+.req-row:hover{background:var(--bg-3);}
+.req-label{padding:0.875rem 1.1rem;font-family:'JetBrains Mono',monospace;font-size:0.67rem;font-weight:600;color:var(--text-3);text-transform:uppercase;letter-spacing:0.08em;border-right:1px solid var(--border);}
+.req-val{padding:0.875rem 1.1rem;font-size:0.8rem;color:var(--text-2);font-weight:500;}
+.req-val .ok{color:var(--green);}
+.req-val .warn{color:var(--amber);}
+
+.compat-grid{margin-top:1.75rem;display:flex;flex-direction:column;gap:0.5rem;}
+.compat-row{display:flex;align-items:center;gap:0.75rem;padding:0.75rem 1rem;border-radius:var(--radius);border:1px solid var(--border);background:var(--bg-card);transition:var(--transition);}
+.compat-row:hover{border-color:var(--teal-border);}
+.compat-os{font-size:0.82rem;font-weight:600;color:var(--text-1);flex:1;display:flex;align-items:center;gap:0.625rem;}
+.compat-os svg{width:18px;height:18px;color:var(--teal);}
+.compat-badge{font-family:'JetBrains Mono',monospace;font-size:0.54rem;font-weight:700;padding:0.2rem 0.6rem;border-radius:100px;letter-spacing:0.07em;text-transform:uppercase;}
+.badge-yes{background:rgba(52,211,153,0.1);color:var(--green);border:1px solid rgba(52,211,153,0.18);}
+.badge-no{background:rgba(248,113,113,0.07);color:var(--red);border:1px solid rgba(248,113,113,0.12);}
+.badge-soon{background:rgba(251,191,36,0.1);color:var(--amber);border:1px solid rgba(251,191,36,0.18);}
+
+/* ─── INSTALL STEPS ─── */
+.install{padding:6rem 0;}
+.install-header{text-align:center;margin-bottom:3rem;}
+.install-header .eyebrow{justify-content:center;}
+.install-header .eyebrow::before{display:none;}
+.steps{max-width:680px;margin:0 auto;display:flex;flex-direction:column;gap:0;}
+.step{display:grid;grid-template-columns:56px 1fr;gap:0;position:relative;}
+.step-left{display:flex;flex-direction:column;align-items:center;}
+.step-num{width:36px;height:36px;border-radius:50%;background:var(--teal-dim);border:2px solid var(--teal-border);display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-size:0.72rem;font-weight:700;color:var(--teal);flex-shrink:0;position:relative;z-index:1;transition:var(--transition);}
+.step:hover .step-num{background:var(--teal);color:var(--bg);border-color:var(--teal);box-shadow:0 0 18px var(--teal-glow);}
+.step-line{width:2px;flex:1;background:var(--border);margin:4px 0;min-height:1.5rem;}
+.step:last-child .step-line{display:none;}
+.step-body{padding:0 0 2rem 0;}
+.step-title{font-size:0.92rem;font-weight:700;letter-spacing:-0.02em;color:var(--text-1);margin-bottom:0.375rem;padding-top:0.45rem;}
+.step-desc{font-size:0.8rem;color:var(--text-3);line-height:1.75;}
+.step-code{margin-top:0.75rem;padding:0.75rem 1rem;border-radius:var(--radius-sm);background:var(--bg);border:1px solid var(--border);font-family:'JetBrains Mono',monospace;font-size:0.72rem;color:var(--teal);display:block;}
+.step-code .cmt{color:var(--text-4);}
+.step-note{margin-top:0.625rem;display:flex;align-items:flex-start;gap:0.5rem;padding:0.625rem 0.875rem;border-radius:var(--radius-sm);background:rgba(0,229,201,0.04);border:1px solid var(--teal-border);font-size:0.75rem;color:var(--text-3);line-height:1.65;}
+.step-note svg{width:14px;height:14px;color:var(--teal);flex-shrink:0;margin-top:1px;}
+
+/* ─── CHANGELOG ─── */
+.changelog{padding:6rem 0;background:var(--bg-2);border-top:1px solid var(--border);}
+.changelog-inner{display:grid;grid-template-columns:260px 1fr;gap:4rem;align-items:start;}
+.cl-sidebar{position:sticky;top:calc(var(--topbar-h) + 2rem);}
+.cl-ver-block{padding:1.25rem;border-radius:var(--radius-lg);border:1px solid var(--teal-border);background:var(--teal-dim);}
+.cl-ver-num{font-family:'JetBrains Mono',monospace;font-size:1.6rem;font-weight:700;color:var(--teal);letter-spacing:-0.04em;}
+.cl-ver-date{font-family:'JetBrains Mono',monospace;font-size:0.62rem;color:var(--text-3);margin-top:0.25rem;text-transform:uppercase;letter-spacing:0.08em;}
+.cl-tag{margin-top:0.875rem;display:inline-block;padding:0.28rem 0.7rem;border-radius:100px;background:rgba(52,211,153,0.1);border:1px solid rgba(52,211,153,0.2);font-family:'JetBrains Mono',monospace;font-size:0.56rem;font-weight:700;color:var(--green);letter-spacing:0.08em;text-transform:uppercase;}
+.cl-stat{margin-top:1rem;display:flex;flex-direction:column;gap:0.4rem;}
+.cl-stat-row{display:flex;justify-content:space-between;align-items:center;font-size:0.75rem;}
+.cl-stat-lbl{color:var(--text-3);font-family:'JetBrains Mono',monospace;font-size:0.63rem;}
+.cl-stat-val{color:var(--text-2);font-weight:600;font-family:'JetBrains Mono',monospace;font-size:0.63rem;}
+.cl-entries{display:flex;flex-direction:column;gap:0.5rem;}
+.cl-entry{border:1px solid var(--border);border-radius:var(--radius);background:var(--bg-card);overflow:hidden;transition:var(--transition);}
+.cl-entry:hover{border-color:var(--teal-border);}
+.cl-entry-head{display:flex;align-items:center;gap:0.75rem;padding:0.875rem 1.1rem;}
+.cl-type{font-family:'JetBrains Mono',monospace;font-size:0.55rem;font-weight:700;padding:0.2rem 0.55rem;border-radius:100px;text-transform:uppercase;letter-spacing:0.07em;flex-shrink:0;}
+.type-new{background:rgba(0,229,201,0.1);color:var(--teal);border:1px solid var(--teal-border);}
+.type-fix{background:rgba(96,165,250,0.1);color:var(--blue);border:1px solid rgba(96,165,250,0.2);}
+.type-improve{background:rgba(167,139,250,0.1);color:var(--purple);border:1px solid rgba(167,139,250,0.2);}
+.cl-entry-title{font-size:0.83rem;font-weight:600;color:var(--text-1);}
+.cl-entry-body{padding:0 1.1rem 0.875rem;font-size:0.77rem;color:var(--text-3);line-height:1.7;border-top:1px solid var(--border);}
+
+/* ─── CTA ─── */
+.cta{padding:8rem 1.5rem;text-align:center;position:relative;overflow:hidden;}
+.cta::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:800px;height:450px;background:radial-gradient(ellipse,rgba(0,229,201,0.07) 0%,transparent 65%);pointer-events:none;}
+.cta::after{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(0,229,201,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(0,229,201,0.025) 1px,transparent 1px);background-size:44px 44px;pointer-events:none;}
+.cta-inner{position:relative;z-index:1;}
+.cta h2{font-size:clamp(1.85rem,5vw,2.8rem);font-weight:700;letter-spacing:-0.04em;max-width:500px;margin:0 auto 1rem;line-height:1.12;color:var(--text-1);}
+.cta h2 .accent{color:var(--teal);}
+.cta p{font-size:0.95rem;color:var(--text-3);max-width:380px;margin:0 auto 2.5rem;line-height:1.8;}
+.cta-btns{display:flex;gap:0.75rem;justify-content:center;flex-wrap:wrap;}
+.btn-primary{padding:0.72rem 1.45rem;border-radius:var(--radius);background:var(--teal);color:var(--bg);font-size:0.82rem;font-weight:700;text-decoration:none;display:inline-flex;align-items:center;gap:0.5rem;border:none;cursor:pointer;letter-spacing:-0.01em;box-shadow:0 0 22px var(--teal-glow),0 4px 18px rgba(0,0,0,0.45);transition:var(--transition);}
+.btn-primary:hover{background:var(--teal-dark);transform:translateY(-2px);}
+.btn-secondary{padding:0.72rem 1.45rem;border-radius:var(--radius);border:1px solid var(--border-md);background:transparent;color:var(--text-2);font-size:0.82rem;font-weight:600;text-decoration:none;display:inline-flex;align-items:center;gap:0.5rem;cursor:pointer;letter-spacing:-0.01em;transition:var(--transition);}
+.btn-secondary:hover{border-color:var(--teal);color:var(--teal);transform:translateY(-2px);}
+
+/* ─── FOOTER ─── */
+footer{padding:2.5rem 1.75rem;border-top:1px solid var(--border);text-align:center;}
+.footer-logo-text{font-size:1rem;font-weight:700;letter-spacing:-0.03em;color:var(--text-3);margin-bottom:0.5rem;}
+.footer-logo-text span{color:var(--teal);}
+.footer-copy{font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:var(--text-4);margin-bottom:1rem;}
+.footer-tags{display:flex;flex-wrap:wrap;justify-content:center;gap:0.5rem;}
+.f-tag{padding:0.22rem 0.625rem;border-radius:100px;font-family:'JetBrains Mono',monospace;font-size:0.54rem;color:var(--text-4);border:1px solid var(--border);background:var(--bg-2);}
+
+/* ─── RESPONSIVE ─── */
+@media(max-width:900px){
+  .inside-grid{grid-template-columns:1fr 1fr;}
+  .reqs-inner{grid-template-columns:1fr;}
+  .changelog-inner{grid-template-columns:1fr;}
+  .cl-sidebar{position:static;}
+  .nav-links{display:none;}
+}
+@media(max-width:600px){
+  .inside-grid{grid-template-columns:1fr;}
+  .dl-meta{flex-direction:column;align-items:flex-start;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">
+    <div class="nav-logo-mark">
+      <svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+    </div>
+    <span class="nav-logo-text">Industria<span>Link</span></span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#whats-inside">What's Inside</a></li>
+    <li><a href="#requirements">Requirements</a></li>
+    <li><a href="#install">Install Guide</a></li>
+    <li><a href="#changelog">Changelog</a></li>
+  </ul>
+  <div class="nav-actions">
+    <button class="btn-theme" id="themeToggle" aria-label="Toggle theme"></button>
+    <a href="#download" class="btn-nav-cta">↓ Download</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="download">
+  <div class="hero-bg">
+    <div class="hero-bg-radial"></div>
+    <div class="hero-grid"></div>
+    <div class="hero-scan"></div>
+  </div>
+  <div class="hero-content">
+    <span class="version-badge"><span class="version-dot"></span>v1.0.0 · First Release · June 2026</span>
+    <h1>Download<br><span class="accent">IndustriaLink</span></h1>
+    <p class="hero-sub">The complete IIoT/CMMS/SCADA desktop platform for industrial environments. Free to install. No cloud dependency. Runs entirely on your local network.</p>
+
+    <!-- DOWNLOAD CARD -->
+    <div class="dl-card" id="dl-card">
+      <div class="dl-meta">
+        <span class="dl-name">IndustriaLink-Setup-v1.0.0.exe</span>
+        <span class="dl-ver">v1.0.0</span>
+      </div>
+      <div class="dl-info-row">
+        <span class="dl-chip">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+          Windows 10/11 · 64-bit
+        </span>
+        <span class="dl-chip">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          173 MB · Inno Setup
+        </span>
+        <span class="dl-chip">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          Jun 2026
+        </span>
+      </div>
+      <a href="https://github.com/Zinoulrc/industrialink/releases/download/v1.0.0/IndustriaLink-Setup-v1.0.0.exe" id="downloadBtn" class="btn-download">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        <span>
+          Download for Windows
+          <span class="btn-download-sub">IndustriaLink-Setup-v1.0.0.exe · 173 MB · Free</span>
+        </span>
+      </a>
+      <p class="dl-note">
+        <a href="https://github.com/Zinoulrc/industrialink/releases/tag/v1.0.0" target="_blank">View on GitHub</a> · 
+        SHA-256: c80cb7353216a7496dc2531b6ac3e...
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT'S INSIDE -->
+<section class="inside" id="whats-inside">
+  <div class="section-wrap">
+    <div class="inside-header reveal">
+      <span class="eyebrow">Package Contents</span>
+      <h2 class="section-h">Everything in the installer</h2>
+      <p class="section-p">The setup wizard handles all dependencies. No Python, no SQL Server client, no manual config — just install and launch.</p>
+    </div>
+    <div class="inside-grid reveal">
+
+      <div class="inside-card">
+        <div class="ic-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 3v18M15 3v18M3 9h18M3 15h18"/></svg>
+        </div>
+        <h3>Desktop Application</h3>
+        <p>PyQt6-based launcher that boots the Flask server in the background and opens the dashboard in your default browser. No console window.</p>
+        <span class="ic-file">IndustriaLink.exe</span>
+      </div>
+
+      <div class="inside-card">
+        <div class="ic-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+        </div>
+        <h3>Configuration Files</h3>
+        <p>Pre-configured <code style="font-family:JetBrains Mono,monospace;font-size:0.78em;color:var(--teal)">config.json</code> for local SQL Server connection, MQTT broker settings, and PLC protocol preferences.</p>
+        <span class="ic-file">config/config.json</span>
+      </div>
+
+      <div class="inside-card">
+        <div class="ic-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
+        </div>
+        <h3>Database Schema</h3>
+        <p>SQL Server T-SQL migration scripts that auto-run on first launch to create all tables, indexes, and stored procedures.</p>
+        <span class="ic-file">db/migrations/</span>
+      </div>
+
+      <div class="inside-card">
+        <div class="ic-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+        </div>
+        <h3>ML Models</h3>
+        <p>Pre-trained IsolationForest and RandomForest weights bundled for vibration analysis. XGBoost ensemble and Prophet models train on your own data post-install.</p>
+        <span class="ic-file">models/pretrained/</span>
+      </div>
+
+      <div class="inside-card">
+        <div class="ic-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <h3>Field App (PWA)</h3>
+        <p>Browser-based Progressive Web App for technicians — installable on mobile. Served automatically by the desktop platform on your local network at port 5001.</p>
+        <span class="ic-file">field_app/ (PWA)</span>
+      </div>
+
+      <div class="inside-card">
+        <div class="ic-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+        </div>
+        <h3>Documentation</h3>
+        <p>Quick-start PDF guide, PLC wiring diagrams for S7-1200 and ESP32 nodes, API reference for the REST endpoints, and MQTT topic map.</p>
+        <span class="ic-file">docs/quickstart.pdf</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- REQUIREMENTS -->
+<section class="reqs" id="requirements">
+  <div class="section-wrap">
+    <div class="reqs-inner">
+      <div class="reveal">
+        <span class="eyebrow">System Requirements</span>
+        <h2 class="section-h">What you need<br>to run it</h2>
+        <p class="section-p">IndustriaLink is self-contained — the installer bundles the Python runtime. You only need SQL Server and a network connection to your PLCs.</p>
+
+        <div class="req-table">
+          <div class="req-row">
+            <div class="req-label">OS</div>
+            <div class="req-val"><span class="ok">Windows 10 / 11</span> · 64-bit</div>
+          </div>
+          <div class="req-row">
+            <div class="req-label">CPU</div>
+            <div class="req-val">x64 · 2 GHz+ recommended</div>
+          </div>
+          <div class="req-row">
+            <div class="req-label">RAM</div>
+            <div class="req-val">4 GB minimum · <span class="ok">8 GB recommended</span></div>
+          </div>
+          <div class="req-row">
+            <div class="req-label">Disk</div>
+            <div class="req-val">500 MB install · 2 GB+ for data</div>
+          </div>
+          <div class="req-row">
+            <div class="req-label">Database</div>
+            <div class="req-val">SQL Server 2017+ <span class="warn">(required)</span></div>
+          </div>
+          <div class="req-row">
+            <div class="req-label">Network</div>
+            <div class="req-val">LAN access to PLCs / MQTT broker</div>
+          </div>
+          <div class="req-row">
+            <div class="req-label">Browser</div>
+            <div class="req-val">Chrome / Edge recommended</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="reveal">
+        <span class="eyebrow">OS Compatibility</span>
+        <h2 class="section-h">Platform<br>support</h2>
+        <p class="section-p">Currently Windows-only. Linux and macOS builds are planned for a future release once the PyQt6 launcher is ported.</p>
+
+        <div class="compat-grid">
+          <div class="compat-row">
+            <span class="compat-os">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+              Windows 10 (64-bit)
+            </span>
+            <span class="compat-badge badge-yes">Supported</span>
+          </div>
+          <div class="compat-row">
+            <span class="compat-os">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+              Windows 11 (64-bit)
+            </span>
+            <span class="compat-badge badge-yes">Supported</span>
+          </div>
+          <div class="compat-row">
+            <span class="compat-os">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+              Linux (Ubuntu/Debian)
+            </span>
+            <span class="compat-badge badge-soon">Planned</span>
+          </div>
+          <div class="compat-row">
+            <span class="compat-os">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+              macOS
+            </span>
+            <span class="compat-badge badge-no">Not yet</span>
+          </div>
+          <div class="compat-row">
+            <span class="compat-os">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+              Windows 32-bit
+            </span>
+            <span class="compat-badge badge-no">Not supported</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INSTALL GUIDE -->
+<section class="install" id="install">
+  <div class="section-wrap">
+    <div class="install-header reveal">
+      <span class="eyebrow">Installation Guide</span>
+      <h2 class="section-h">Up and running in 5 minutes</h2>
+    </div>
+    <div class="steps reveal">
+
+      <div class="step">
+        <div class="step-left">
+          <div class="step-num">01</div>
+          <div class="step-line"></div>
+        </div>
+        <div class="step-body">
+          <div class="step-title">Download the installer</div>
+          <div class="step-desc">Click the download button above to get <code style="font-family:JetBrains Mono,monospace;color:var(--teal);font-size:0.85em">IndustriaLink-Setup-1.0.0.exe</code> from GitHub Releases. Verify the SHA-256 checksum if needed.</div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-left">
+          <div class="step-num">02</div>
+          <div class="step-line"></div>
+        </div>
+        <div class="step-body">
+          <div class="step-title">Run the setup wizard</div>
+          <div class="step-desc">Right-click the installer and select "Run as administrator". The wizard will guide you through the install path and create a desktop shortcut automatically.</div>
+          <div class="step-note">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+            Windows SmartScreen may show a warning on first run. Click "More info → Run anyway" — the binary is unsigned for now.
+          </div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-left">
+          <div class="step-num">03</div>
+          <div class="step-line"></div>
+        </div>
+        <div class="step-body">
+          <div class="step-title">Configure your SQL Server connection</div>
+          <div class="step-desc">Open <code style="font-family:JetBrains Mono,monospace;color:var(--teal);font-size:0.85em">config/config.json</code> in the install directory and fill in your SQL Server host, database name, and credentials.</div>
+          <code class="step-code"><span class="cmt">// config/config.json</span>
+{
+  "db_server": "localhost\\SQLEXPRESS",
+  "db_name": "industrialink",
+  "db_user": "sa",
+  "db_password": "your_password"
+}</code>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-left">
+          <div class="step-num">04</div>
+          <div class="step-line"></div>
+        </div>
+        <div class="step-body">
+          <div class="step-title">Launch IndustriaLink</div>
+          <div class="step-desc">Double-click the desktop shortcut. The PyQt6 launcher boots the server and opens the platform in your browser at <code style="font-family:JetBrains Mono,monospace;color:var(--teal);font-size:0.85em">http://localhost:5000</code>. Database tables are created automatically on first run.</div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-left">
+          <div class="step-num">05</div>
+          <div class="step-line"></div>
+        </div>
+        <div class="step-body">
+          <div class="step-title">Connect your first PLC or device</div>
+          <div class="step-desc">Log in as Admin, go to Settings → PLC Connections, and add your Siemens S7-1200 (port 102), Modbus TCP device (port 502), or MQTT broker. The live monitor will populate immediately after the first poll cycle.</div>
+          <div class="step-note">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+            For Siemens S7-1200: disable "Optimized block access" on your DB in TIA Portal and enable PUT/GET communication before connecting.
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CHANGELOG -->
+<section class="changelog" id="changelog">
+  <div class="section-wrap">
+    <div class="changelog-inner reveal">
+
+      <div class="cl-sidebar">
+        <span class="eyebrow">Release Notes</span>
+        <div class="cl-ver-block">
+          <div class="cl-ver-num">v1.0.0</div>
+          <div class="cl-ver-date">June 2026 · Initial Release</div>
+          <span class="cl-tag">Stable</span>
+          <div class="cl-stat">
+            <div class="cl-stat-row">
+              <span class="cl-stat-lbl">UI Pages</span>
+              <span class="cl-stat-val">41</span>
+            </div>
+            <div class="cl-stat-row">
+              <span class="cl-stat-lbl">PLC Protocols</span>
+              <span class="cl-stat-val">6</span>
+            </div>
+            <div class="cl-stat-row">
+              <span class="cl-stat-lbl">ML Models</span>
+              <span class="cl-stat-val">5</span>
+            </div>
+            <div class="cl-stat-row">
+              <span class="cl-stat-lbl">Access Roles</span>
+              <span class="cl-stat-val">4</span>
+            </div>
+            <div class="cl-stat-row">
+              <span class="cl-stat-lbl">Platform</span>
+              <span class="cl-stat-val">Windows x64</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="cl-entries">
+        <div class="cl-entry">
+          <div class="cl-entry-head">
+            <span class="cl-type type-new">New</span>
+            <span class="cl-entry-title">Desktop application packaging with PyQt6 + PyInstaller + Inno Setup</span>
+          </div>
+          <div class="cl-entry-body">Platform converted from a web app to a Windows desktop application. The PyQt6 launcher boots Flask/Werkzeug in the background, redirects all server logs into the launcher window, and eliminates the console window entirely.</div>
+        </div>
+
+        <div class="cl-entry">
+          <div class="cl-entry-head">
+            <span class="cl-type type-new">New</span>
+            <span class="cl-entry-title">ML Dataset Validation — CWRU bearing fault classification</span>
+          </div>
+          <div class="cl-entry-body">New vibration analysis tab with drag-and-drop CSV upload, tri-axial feature extraction, RandomForest classifier (200 estimators, balanced class weights), file-level GroupKFold CV to prevent data leakage, and RUL estimation. PDF/Excel export via jsPDF and SheetJS.</div>
+        </div>
+
+        <div class="cl-entry">
+          <div class="cl-entry-head">
+            <span class="cl-type type-new">New</span>
+            <span class="cl-entry-title">Prescriptive maintenance engine with multi-plan scoring</span>
+          </div>
+          <div class="cl-entry-body">Five ranked maintenance plans generated per asset using fault-profile tables, global Pareto normalization, safety-critical override logic, and dynamic risk reduction from failure_prob and health_score. Confidence flag for tied scores.</div>
+        </div>
+
+        <div class="cl-entry">
+          <div class="cl-entry-head">
+            <span class="cl-type type-new">New</span>
+            <span class="cl-entry-title">GMAO parts request & approval workflow</span>
+          </div>
+          <div class="cl-entry-body">Technicians submit parts requests with urgency levels via the Field App. Admins approve or reject from a unified panel in gmao.html. Replaces direct inventory deduction with a full audit trail and badge counts.</div>
+        </div>
+
+        <div class="cl-entry">
+          <div class="cl-entry-head">
+            <span class="cl-type type-fix">Fix</span>
+            <span class="cl-entry-title">SQL Server T-SQL dialect — full SQLite syntax removal</span>
+          </div>
+          <div class="cl-entry-body">Replaced all SQLite-specific syntax (AUTOINCREMENT, strftime, PRAGMA) with T-SQL equivalents (IDENTITY, CONVERT, sys.columns) across the entire codebase for full SQL Server 2017+ compatibility.</div>
+        </div>
+
+        <div class="cl-entry">
+          <div class="cl-entry-head">
+            <span class="cl-type type-fix">Fix</span>
+            <span class="cl-entry-title">Siemens S7-1200 snap7 connection — optimized block access</span>
+          </div>
+          <div class="cl-entry-body">Diagnosed and documented the TIA Portal "Optimized block access" issue that prevented snap7 from reading DB variables by absolute byte offset. Added setup guide for disabling this and enabling PUT/GET communication.</div>
+        </div>
+
+        <div class="cl-entry">
+          <div class="cl-entry-head">
+            <span class="cl-type type-improve">Improve</span>
+            <span class="cl-entry-title">Thread-safety and connection pool hardening</span>
+          </div>
+          <div class="cl-entry-body">Added _driver_lock across all PLC driver access paths, fixed non-atomic cooldown/pump activation, resolved connection leaks in kpi_iiot.py and five other API endpoints, and corrected background threads calling conn.close() instead of returning to pool.</div>
+        </div>
+
+        <div class="cl-entry">
+          <div class="cl-entry-head">
+            <span class="cl-type type-improve">Improve</span>
+            <span class="cl-entry-title">Fractional BOOL offset fix in read_db_batch</span>
+          </div>
+          <div class="cl-entry-body">Fixed truncation of fractional bit offsets for BOOL variables in the PLC driver's batch read path. BOOL variables at non-integer byte positions now resolve correctly.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+  <div class="cta-inner">
+    <span class="eyebrow" style="justify-content:center"><span style="display:none"></span>Ready to deploy</span>
+    <h2>Your plant.<br>Your <span class="accent">data</span>. Your network.</h2>
+    <p>No cloud subscription. No per-seat licensing. Install once, run on your LAN, connect your PLCs in minutes.</p>
+    <div class="cta-btns">
+      <a href="https://github.com/Zinoulrc/industrialink/releases/download/v1.0.0/IndustriaLink-Setup-v1.0.0.exe" class="btn-primary">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Download v1.0.0
+      </a>
+      <a href="#install" class="btn-secondary">View Install Guide</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo-text">Industria<span>Link</span></div>
+  <div class="footer-copy">© 2026 IndustriaLink · Industrial Intelligence Platform · v1.0.0</div>
+  <div class="footer-tags">
+    <span class="f-tag">Flask / Python</span>
+    <span class="f-tag">PyQt6 · PyInstaller</span>
+    <span class="f-tag">SQL Server</span>
+    <span class="f-tag">snap7 · Modbus · OPC-UA</span>
+    <span class="f-tag">MQTT / IIoT</span>
+    <span class="f-tag">XGBoost · Prophet · LSTM</span>
+    <span class="f-tag">Windows x64</span>
+  </div>
+</footer>
+
+<script>
+// Theme toggle
+const sunIcon=`<circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>`;
+const moonIcon=`<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>`;
+let light=localStorage.getItem('il-theme')!=='dark';
+const themeToggle=document.getElementById('themeToggle');
+if(light)document.documentElement.classList.add('light');
+const setIcon=()=>{themeToggle.innerHTML=`<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${light?moonIcon:sunIcon}</svg>`;};
+setIcon();
+themeToggle.addEventListener('click',()=>{light=!light;document.documentElement.classList.toggle('light',light);localStorage.setItem('il-theme',light?'light':'dark');setIcon();});
+
+// Scroll reveal
+const obs=new IntersectionObserver(entries=>{entries.forEach((e,i)=>{if(e.isIntersecting){setTimeout(()=>e.target.classList.add('visible'),i*70);obs.unobserve(e.target);}});},{threshold:0.08});
+document.querySelectorAll('.reveal').forEach(r=>obs.observe(r));
+
+// Smooth scroll
+document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener('click',function(e){e.preventDefault();const t=document.querySelector(this.getAttribute('href'));if(t)t.scrollIntoView({behavior:'smooth',block:'start'});});});
+
+
+</script>
+</body>
+</html>
