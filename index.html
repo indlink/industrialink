@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
 <head>
-<script>(function(){var t=localStorage.getItem('il-theme');if(!t){t='light';localStorage.setItem('il-theme','light');}document.documentElement.setAttribute('data-theme',t);if(t!=='dark')document.documentElement.classList.add('light');})();</script>
+<script>(function(){var t=localStorage.getItem('il-theme');if(!t){t='light';localStorage.setItem('il-theme','light');}document.documentElement.setAttribute('data-theme',t);if(t!=='dark')document.documentElement.classList.add('light');var l=localStorage.getItem('il-lang')||'en';document.documentElement.setAttribute('lang',l);document.documentElement.setAttribute('dir',l==='ar'?'rtl':'ltr');})();</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>IndustriaLink · IIoT Platform Download</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Cairo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root {
   --bg:#060a0e;--bg-2:#0b1118;--bg-3:#101820;--bg-card:#0d1520;
@@ -29,6 +29,7 @@ html.light {
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--text-2);font-family:'Space Grotesk',system-ui,sans-serif;font-size:14px;line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased;}
+html[lang="ar"] body{font-family:'Cairo',system-ui,sans-serif;}
 body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;opacity:0.022;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");background-size:200px 200px;}
 
 /* ─── NAV ─── */
@@ -41,18 +42,26 @@ html.light nav{background:rgba(238,242,247,0.88);}
 .nav-logo-text span{color:var(--teal);}
 .nav-links{display:flex;gap:0.125rem;list-style:none;}
 .nav-links a{padding:0.45rem 0.85rem;border-radius:var(--radius-sm);font-size:0.78rem;font-weight:500;color:var(--text-3);text-decoration:none;transition:var(--transition);letter-spacing:-0.01em;}
+html[lang="ar"] .nav-links a{letter-spacing:0;font-size:0.82rem;}
 .nav-links a:hover{color:var(--text-1);background:var(--bg-3);}
 .nav-actions{display:flex;align-items:center;gap:0.625rem;}
 .btn-theme{width:36px;height:36px;border-radius:var(--radius-sm);border:1px solid var(--border-md);background:transparent;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--text-3);transition:var(--transition);}
 .btn-theme:hover{border-color:var(--teal);color:var(--teal);}
+.btn-lang{padding:0.35rem 0.7rem;border-radius:var(--radius-sm);border:1px solid var(--border-md);background:transparent;cursor:pointer;font-family:'JetBrains Mono',monospace;font-size:0.68rem;font-weight:700;color:var(--text-3);letter-spacing:0.06em;transition:var(--transition);}
+html[lang="ar"] .btn-lang{font-family:'Cairo',sans-serif;letter-spacing:0;font-size:0.75rem;}
+.btn-lang:hover{border-color:var(--teal);color:var(--teal);}
 .btn-nav-cta{padding:0.5rem 1.15rem;border-radius:var(--radius-sm);background:var(--teal);color:var(--bg);font-size:0.78rem;font-weight:700;text-decoration:none;letter-spacing:-0.01em;transition:var(--transition);box-shadow:0 0 16px var(--teal-glow);}
+html[lang="ar"] .btn-nav-cta{letter-spacing:0;font-size:0.82rem;}
 .btn-nav-cta:hover{background:var(--teal-dark);transform:translateY(-1px);}
 
 /* ─── SECTION UTILITIES ─── */
 .section-wrap{max-width:1100px;margin:0 auto;padding:0 1.75rem;}
 .eyebrow{font-family:'JetBrains Mono',monospace;font-size:0.6rem;font-weight:700;color:var(--teal);letter-spacing:0.16em;text-transform:uppercase;margin-bottom:0.875rem;display:flex;align-items:center;gap:0.5rem;}
+html[lang="ar"] .eyebrow{font-family:'Cairo',sans-serif;letter-spacing:0.04em;font-size:0.65rem;}
 .eyebrow::before{content:'';width:18px;height:1px;background:var(--teal);opacity:0.6;}
+html[dir="rtl"] .eyebrow::before{order:1;}
 .section-h{font-family:'Space Grotesk',sans-serif;font-size:clamp(1.55rem,3.2vw,2rem);font-weight:700;letter-spacing:-0.035em;line-height:1.2;color:var(--text-1);}
+html[lang="ar"] .section-h{font-family:'Cairo',sans-serif;letter-spacing:0;line-height:1.4;}
 .section-p{margin-top:0.875rem;color:var(--text-3);font-size:0.875rem;line-height:1.8;max-width:440px;}
 .reveal{opacity:0;transform:translateY(24px);transition:opacity 0.6s ease,transform 0.6s ease;}
 .reveal.visible{opacity:1;transform:translateY(0);}
@@ -66,13 +75,13 @@ html.light nav{background:rgba(238,242,247,0.88);}
 .hero-scan{position:absolute;inset:0;overflow:hidden;}
 .hero-scan::after{content:'';position:absolute;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent 0%,rgba(0,229,201,0.4) 30%,rgba(0,229,201,0.6) 50%,rgba(0,229,201,0.4) 70%,transparent 100%);animation:scan 7s ease-in-out infinite;top:var(--topbar-h);}
 @keyframes scan{0%{transform:translateY(0);opacity:0}8%{opacity:1}92%{opacity:1}100%{transform:translateY(100vh);opacity:0}}
-
 .hero-content{position:relative;z-index:1;max-width:800px;margin:0 auto;}
 .version-badge{display:inline-flex;align-items:center;gap:0.625rem;padding:0.38rem 1rem 0.38rem 0.65rem;border:1px solid var(--teal-border);border-radius:100px;background:rgba(0,229,201,0.045);font-family:'JetBrains Mono',monospace;font-size:0.63rem;font-weight:600;color:var(--teal);margin-bottom:2rem;letter-spacing:0.06em;animation:fadeUp 0.55s ease both;}
+html[lang="ar"] .version-badge{font-family:'Cairo',sans-serif;letter-spacing:0;}
 .version-dot{width:7px;height:7px;border-radius:50%;background:var(--teal);animation:pulse-dot 2s ease-in-out infinite;}
 @keyframes pulse-dot{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.4;transform:scale(0.6)}}
-
 .hero h1{font-size:clamp(2.8rem,6.5vw,4.4rem);font-weight:700;letter-spacing:-0.045em;line-height:1.06;color:var(--text-1);animation:fadeUp 0.55s 0.08s ease both;}
+html[lang="ar"] .hero h1{letter-spacing:0;line-height:1.2;}
 .hero h1 .accent{color:var(--teal);text-shadow:0 0 50px var(--teal-glow),0 0 90px rgba(0,229,201,0.07);}
 .hero-sub{margin-top:1.5rem;max-width:520px;margin-left:auto;margin-right:auto;font-size:0.94rem;color:var(--text-3);line-height:1.8;animation:fadeUp 0.55s 0.15s ease both;}
 
@@ -84,14 +93,18 @@ html.light nav{background:rgba(238,242,247,0.88);}
 .dl-ver{font-family:'JetBrains Mono',monospace;font-size:0.62rem;font-weight:600;padding:0.28rem 0.7rem;border-radius:100px;background:var(--teal-dim);border:1px solid var(--teal-border);color:var(--teal);}
 .dl-info-row{display:flex;gap:0.5rem;flex-wrap:wrap;margin-bottom:1.75rem;}
 .dl-chip{display:flex;align-items:center;gap:0.35rem;padding:0.3rem 0.75rem;border-radius:var(--radius-sm);background:var(--bg-3);border:1px solid var(--border-md);font-family:'JetBrains Mono',monospace;font-size:0.62rem;color:var(--text-3);}
+html[lang="ar"] .dl-chip{font-family:'Cairo',sans-serif;font-size:0.7rem;}
 .dl-chip svg{width:12px;height:12px;color:var(--teal);flex-shrink:0;}
 .btn-download{display:flex;align-items:center;justify-content:center;gap:0.75rem;width:100%;padding:1rem 1.5rem;border-radius:var(--radius);background:var(--teal);color:var(--bg);font-family:'Space Grotesk',sans-serif;font-size:0.9rem;font-weight:700;text-decoration:none;letter-spacing:-0.01em;border:none;cursor:pointer;box-shadow:0 0 28px var(--teal-glow),0 6px 24px rgba(0,0,0,0.4);transition:all 0.2s ease;position:relative;overflow:hidden;}
+html[lang="ar"] .btn-download{font-family:'Cairo',sans-serif;letter-spacing:0;}
 .btn-download::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent 0%,rgba(255,255,255,0.08) 50%,transparent 100%);transform:translateX(-100%);transition:transform 0.55s ease;}
 .btn-download:hover{background:var(--teal-dark);transform:translateY(-2px);box-shadow:0 0 40px var(--teal-glow),0 12px 32px rgba(0,0,0,0.5);}
 .btn-download:hover::after{transform:translateX(100%);}
 .btn-download svg{width:18px;height:18px;flex-shrink:0;}
 .btn-download-sub{display:flex;align-items:center;gap:0.35rem;font-size:0.68rem;font-weight:500;opacity:0.65;}
+html[lang="ar"] .btn-download-sub{font-size:0.72rem;}
 .dl-note{margin-top:1rem;text-align:center;font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:var(--text-4);letter-spacing:0.06em;}
+html[lang="ar"] .dl-note{font-family:'Cairo',sans-serif;letter-spacing:0;}
 .dl-note a{color:var(--teal);text-decoration:none;}
 .dl-note a:hover{text-decoration:underline;}
 
@@ -104,11 +117,13 @@ html.light nav{background:rgba(238,242,247,0.88);}
 .inside-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;}
 .inside-card{background:var(--bg-card);padding:1.625rem;transition:var(--transition);position:relative;overflow:hidden;}
 .inside-card::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 90% 70% at 0% 0%,rgba(0,229,201,0.055) 0%,transparent 55%);opacity:0;transition:opacity 0.3s ease;}
+html[dir="rtl"] .inside-card::before{background:radial-gradient(ellipse 90% 70% at 100% 0%,rgba(0,229,201,0.055) 0%,transparent 55%);}
 .inside-card:hover{background:var(--bg-3);}
 .inside-card:hover::before{opacity:1;}
 .ic-icon{width:44px;height:44px;border-radius:var(--radius-sm);background:var(--teal-dim);border:1px solid var(--teal-border);display:flex;align-items:center;justify-content:center;color:var(--teal);margin-bottom:1.125rem;transition:var(--transition);}
 .inside-card:hover .ic-icon{background:var(--teal);color:var(--bg);box-shadow:0 0 18px var(--teal-glow);}
 .inside-card h3{font-size:0.92rem;font-weight:700;letter-spacing:-0.02em;margin-bottom:0.5rem;color:var(--text-1);}
+html[lang="ar"] .inside-card h3{letter-spacing:0;}
 .inside-card p{font-size:0.79rem;color:var(--text-3);line-height:1.7;}
 .ic-file{margin-top:1rem;font-family:'JetBrains Mono',monospace;font-size:0.6rem;padding:0.22rem 0.6rem;border-radius:var(--radius-sm);background:var(--bg-3);border:1px solid var(--border);color:var(--text-3);display:inline-block;}
 
@@ -120,16 +135,18 @@ html.light nav{background:rgba(238,242,247,0.88);}
 .req-row:last-child{border-bottom:none;}
 .req-row:hover{background:var(--bg-3);}
 .req-label{padding:0.875rem 1.1rem;font-family:'JetBrains Mono',monospace;font-size:0.67rem;font-weight:600;color:var(--text-3);text-transform:uppercase;letter-spacing:0.08em;border-right:1px solid var(--border);}
+html[lang="ar"] .req-label{font-family:'Cairo',sans-serif;letter-spacing:0;font-size:0.72rem;border-right:none;border-left:1px solid var(--border);}
+html[dir="ltr"] .req-label{border-right:1px solid var(--border);border-left:none;}
 .req-val{padding:0.875rem 1.1rem;font-size:0.8rem;color:var(--text-2);font-weight:500;}
 .req-val .ok{color:var(--green);}
 .req-val .warn{color:var(--amber);}
-
 .compat-grid{margin-top:1.75rem;display:flex;flex-direction:column;gap:0.5rem;}
 .compat-row{display:flex;align-items:center;gap:0.75rem;padding:0.75rem 1rem;border-radius:var(--radius);border:1px solid var(--border);background:var(--bg-card);transition:var(--transition);}
 .compat-row:hover{border-color:var(--teal-border);}
 .compat-os{font-size:0.82rem;font-weight:600;color:var(--text-1);flex:1;display:flex;align-items:center;gap:0.625rem;}
 .compat-os svg{width:18px;height:18px;color:var(--teal);}
 .compat-badge{font-family:'JetBrains Mono',monospace;font-size:0.54rem;font-weight:700;padding:0.2rem 0.6rem;border-radius:100px;letter-spacing:0.07em;text-transform:uppercase;}
+html[lang="ar"] .compat-badge{font-family:'Cairo',sans-serif;letter-spacing:0;font-size:0.62rem;}
 .badge-yes{background:rgba(52,211,153,0.1);color:var(--green);border:1px solid rgba(52,211,153,0.18);}
 .badge-no{background:rgba(248,113,113,0.07);color:var(--red);border:1px solid rgba(248,113,113,0.12);}
 .badge-soon{background:rgba(251,191,36,0.1);color:var(--amber);border:1px solid rgba(251,191,36,0.18);}
@@ -141,36 +158,44 @@ html.light nav{background:rgba(238,242,247,0.88);}
 .install-header .eyebrow::before{display:none;}
 .steps{max-width:680px;margin:0 auto;display:flex;flex-direction:column;gap:0;}
 .step{display:grid;grid-template-columns:56px 1fr;gap:0;position:relative;}
+html[dir="rtl"] .step{grid-template-columns:1fr 56px;}
 .step-left{display:flex;flex-direction:column;align-items:center;}
+html[dir="rtl"] .step-left{order:2;}
+html[dir="rtl"] .step-body{order:1;}
 .step-num{width:36px;height:36px;border-radius:50%;background:var(--teal-dim);border:2px solid var(--teal-border);display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-size:0.72rem;font-weight:700;color:var(--teal);flex-shrink:0;position:relative;z-index:1;transition:var(--transition);}
 .step:hover .step-num{background:var(--teal);color:var(--bg);border-color:var(--teal);box-shadow:0 0 18px var(--teal-glow);}
 .step-line{width:2px;flex:1;background:var(--border);margin:4px 0;min-height:1.5rem;}
 .step:last-child .step-line{display:none;}
 .step-body{padding:0 0 2rem 0;}
 .step-title{font-size:0.92rem;font-weight:700;letter-spacing:-0.02em;color:var(--text-1);margin-bottom:0.375rem;padding-top:0.45rem;}
+html[lang="ar"] .step-title{letter-spacing:0;}
 .step-desc{font-size:0.8rem;color:var(--text-3);line-height:1.75;}
-.step-code{margin-top:0.75rem;padding:0.75rem 1rem;border-radius:var(--radius-sm);background:var(--bg);border:1px solid var(--border);font-family:'JetBrains Mono',monospace;font-size:0.72rem;color:var(--teal);display:block;}
-.step-code .cmt{color:var(--text-4);}
+.step-code{margin-top:0.75rem;padding:0.75rem 1rem;border-radius:var(--radius-sm);background:var(--bg);border:1px solid var(--border);font-family:'JetBrains Mono',monospace;font-size:0.72rem;color:var(--teal);display:block;direction:ltr;text-align:left;}
 .step-note{margin-top:0.625rem;display:flex;align-items:flex-start;gap:0.5rem;padding:0.625rem 0.875rem;border-radius:var(--radius-sm);background:rgba(0,229,201,0.04);border:1px solid var(--teal-border);font-size:0.75rem;color:var(--text-3);line-height:1.65;}
 .step-note svg{width:14px;height:14px;color:var(--teal);flex-shrink:0;margin-top:1px;}
 
 /* ─── CHANGELOG ─── */
 .changelog{padding:6rem 0;background:var(--bg-2);border-top:1px solid var(--border);}
 .changelog-inner{display:grid;grid-template-columns:260px 1fr;gap:4rem;align-items:start;}
+html[dir="rtl"] .changelog-inner{direction:rtl;}
 .cl-sidebar{position:sticky;top:calc(var(--topbar-h) + 2rem);}
 .cl-ver-block{padding:1.25rem;border-radius:var(--radius-lg);border:1px solid var(--teal-border);background:var(--teal-dim);}
 .cl-ver-num{font-family:'JetBrains Mono',monospace;font-size:1.6rem;font-weight:700;color:var(--teal);letter-spacing:-0.04em;}
 .cl-ver-date{font-family:'JetBrains Mono',monospace;font-size:0.62rem;color:var(--text-3);margin-top:0.25rem;text-transform:uppercase;letter-spacing:0.08em;}
+html[lang="ar"] .cl-ver-date{font-family:'Cairo',sans-serif;letter-spacing:0;}
 .cl-tag{margin-top:0.875rem;display:inline-block;padding:0.28rem 0.7rem;border-radius:100px;background:rgba(52,211,153,0.1);border:1px solid rgba(52,211,153,0.2);font-family:'JetBrains Mono',monospace;font-size:0.56rem;font-weight:700;color:var(--green);letter-spacing:0.08em;text-transform:uppercase;}
+html[lang="ar"] .cl-tag{font-family:'Cairo',sans-serif;letter-spacing:0;}
 .cl-stat{margin-top:1rem;display:flex;flex-direction:column;gap:0.4rem;}
 .cl-stat-row{display:flex;justify-content:space-between;align-items:center;font-size:0.75rem;}
 .cl-stat-lbl{color:var(--text-3);font-family:'JetBrains Mono',monospace;font-size:0.63rem;}
+html[lang="ar"] .cl-stat-lbl{font-family:'Cairo',sans-serif;font-size:0.68rem;}
 .cl-stat-val{color:var(--text-2);font-weight:600;font-family:'JetBrains Mono',monospace;font-size:0.63rem;}
 .cl-entries{display:flex;flex-direction:column;gap:0.5rem;}
 .cl-entry{border:1px solid var(--border);border-radius:var(--radius);background:var(--bg-card);overflow:hidden;transition:var(--transition);}
 .cl-entry:hover{border-color:var(--teal-border);}
 .cl-entry-head{display:flex;align-items:center;gap:0.75rem;padding:0.875rem 1.1rem;}
 .cl-type{font-family:'JetBrains Mono',monospace;font-size:0.55rem;font-weight:700;padding:0.2rem 0.55rem;border-radius:100px;text-transform:uppercase;letter-spacing:0.07em;flex-shrink:0;}
+html[lang="ar"] .cl-type{font-family:'Cairo',sans-serif;letter-spacing:0;font-size:0.65rem;}
 .type-new{background:rgba(0,229,201,0.1);color:var(--teal);border:1px solid var(--teal-border);}
 .type-fix{background:rgba(96,165,250,0.1);color:var(--blue);border:1px solid rgba(96,165,250,0.2);}
 .type-improve{background:rgba(167,139,250,0.1);color:var(--purple);border:1px solid rgba(167,139,250,0.2);}
@@ -183,12 +208,15 @@ html.light nav{background:rgba(238,242,247,0.88);}
 .cta::after{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(0,229,201,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(0,229,201,0.025) 1px,transparent 1px);background-size:44px 44px;pointer-events:none;}
 .cta-inner{position:relative;z-index:1;}
 .cta h2{font-size:clamp(1.85rem,5vw,2.8rem);font-weight:700;letter-spacing:-0.04em;max-width:500px;margin:0 auto 1rem;line-height:1.12;color:var(--text-1);}
+html[lang="ar"] .cta h2{letter-spacing:0;line-height:1.35;}
 .cta h2 .accent{color:var(--teal);}
 .cta p{font-size:0.95rem;color:var(--text-3);max-width:380px;margin:0 auto 2.5rem;line-height:1.8;}
 .cta-btns{display:flex;gap:0.75rem;justify-content:center;flex-wrap:wrap;}
 .btn-primary{padding:0.72rem 1.45rem;border-radius:var(--radius);background:var(--teal);color:var(--bg);font-size:0.82rem;font-weight:700;text-decoration:none;display:inline-flex;align-items:center;gap:0.5rem;border:none;cursor:pointer;letter-spacing:-0.01em;box-shadow:0 0 22px var(--teal-glow),0 4px 18px rgba(0,0,0,0.45);transition:var(--transition);}
+html[lang="ar"] .btn-primary{letter-spacing:0;}
 .btn-primary:hover{background:var(--teal-dark);transform:translateY(-2px);}
 .btn-secondary{padding:0.72rem 1.45rem;border-radius:var(--radius);border:1px solid var(--border-md);background:transparent;color:var(--text-2);font-size:0.82rem;font-weight:600;text-decoration:none;display:inline-flex;align-items:center;gap:0.5rem;cursor:pointer;letter-spacing:-0.01em;transition:var(--transition);}
+html[lang="ar"] .btn-secondary{letter-spacing:0;}
 .btn-secondary:hover{border-color:var(--teal);color:var(--teal);transform:translateY(-2px);}
 
 /* ─── FOOTER ─── */
@@ -196,6 +224,7 @@ footer{padding:2.5rem 1.75rem;border-top:1px solid var(--border);text-align:cent
 .footer-logo-text{font-size:1rem;font-weight:700;letter-spacing:-0.03em;color:var(--text-3);margin-bottom:0.5rem;}
 .footer-logo-text span{color:var(--teal);}
 .footer-copy{font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:var(--text-4);margin-bottom:1rem;}
+html[lang="ar"] .footer-copy{font-family:'Cairo',sans-serif;font-size:0.68rem;}
 .footer-tags{display:flex;flex-wrap:wrap;justify-content:center;gap:0.5rem;}
 .f-tag{padding:0.22rem 0.625rem;border-radius:100px;font-family:'JetBrains Mono',monospace;font-size:0.54rem;color:var(--text-4);border:1px solid var(--border);background:var(--bg-2);}
 
@@ -224,14 +253,15 @@ footer{padding:2.5rem 1.75rem;border-top:1px solid var(--border);text-align:cent
     <span class="nav-logo-text">Industria<span>Link</span></span>
   </a>
   <ul class="nav-links">
-    <li><a href="#whats-inside">What's Inside</a></li>
-    <li><a href="#requirements">Requirements</a></li>
-    <li><a href="#install">Install Guide</a></li>
-    <li><a href="#changelog">Changelog</a></li>
+    <li><a href="#whats-inside" data-i18n="nav.inside">What's Inside</a></li>
+    <li><a href="#requirements" data-i18n="nav.requirements">Requirements</a></li>
+    <li><a href="#install" data-i18n="nav.install">Install Guide</a></li>
+    <li><a href="#changelog" data-i18n="nav.changelog">Changelog</a></li>
   </ul>
   <div class="nav-actions">
+    <button class="btn-lang" id="langToggle" aria-label="Toggle language">AR</button>
     <button class="btn-theme" id="themeToggle" aria-label="Toggle theme"></button>
-    <a href="#dl-card" class="btn-nav-cta">↓ Download</a>
+    <a href="#dl-card" class="btn-nav-cta" data-i18n="nav.download">↓ Download</a>
   </div>
 </nav>
 
@@ -243,9 +273,9 @@ footer{padding:2.5rem 1.75rem;border-top:1px solid var(--border);text-align:cent
     <div class="hero-scan"></div>
   </div>
   <div class="hero-content">
-    <span class="version-badge"><span class="version-dot"></span>v1.0.0 · First Release · June 2026</span>
-    <h1>Download<br><span class="accent">IndustriaLink</span></h1>
-    <p class="hero-sub">The complete IIoT/CMMS/SCADA desktop platform for industrial environments. Free to install. No cloud dependency. Runs entirely on your local network.</p>
+    <span class="version-badge"><span class="version-dot"></span><span data-i18n="hero.badge">v1.0.0 · First Release · June 2026</span></span>
+    <h1><span data-i18n="hero.h1a">Download</span><br><span class="accent">IndustriaLink</span></h1>
+    <p class="hero-sub" data-i18n="hero.sub">The complete IIoT/CMMS/SCADA desktop platform for industrial environments. Free to install. No cloud dependency. Runs entirely on your local network.</p>
 
     <!-- DOWNLOAD CARD -->
     <div class="dl-card" id="dl-card">
@@ -256,26 +286,26 @@ footer{padding:2.5rem 1.75rem;border-top:1px solid var(--border);text-align:cent
       <div class="dl-info-row">
         <span class="dl-chip">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
-          Windows 10/11 · 64-bit
+          <span data-i18n="dl.chip1">Windows 10/11 · 64-bit</span>
         </span>
         <span class="dl-chip">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-          173 MB · Inno Setup
+          <span data-i18n="dl.chip2">173 MB · Inno Setup</span>
         </span>
         <span class="dl-chip">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          Jun 2026
+          <span data-i18n="dl.chip3">Jun 2026</span>
         </span>
       </div>
       <a href="https://github.com/indlink/industrialink/releases/download/v1.0.0/IndustriaLink-Setup-v1.0.0.exe" id="downloadBtn" class="btn-download" download="IndustriaLink-Setup-v1.0.0.exe" target="_blank">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
         <span>
-          Download for Windows
-          <span class="btn-download-sub">IndustriaLink-Setup-v1.0.0.exe · 173 MB · Free</span>
+          <span data-i18n="dl.btn">Download for Windows</span>
+          <span class="btn-download-sub" data-i18n="dl.btnsub">IndustriaLink-Setup-v1.0.0.exe · 173 MB · Free</span>
         </span>
       </a>
       <p class="dl-note">
-        <a href="https://github.com/indlink/industrialink/releases/tag/v1.0.0" target="_blank">View on GitHub</a> · 
+        <a href="https://github.com/indlink/industrialink/releases/tag/v1.0.0" target="_blank" data-i18n="dl.github">View on GitHub</a> · 
         SHA-256: c80cb7353216a7496dc2531b6ac3e...
       </p>
     </div>
@@ -286,9 +316,9 @@ footer{padding:2.5rem 1.75rem;border-top:1px solid var(--border);text-align:cent
 <section class="inside" id="whats-inside">
   <div class="section-wrap">
     <div class="inside-header reveal">
-      <span class="eyebrow">Package Contents</span>
-      <h2 class="section-h">Everything in the installer</h2>
-      <p class="section-p">The setup wizard handles all dependencies. No Python, no SQL Server client, no manual config — just install and launch.</p>
+      <span class="eyebrow" data-i18n="inside.eyebrow">Package Contents</span>
+      <h2 class="section-h" data-i18n="inside.h2">Everything in the installer</h2>
+      <p class="section-p" data-i18n="inside.p">The setup wizard handles all dependencies. No Python, no SQL Server client, no manual config — just install and launch.</p>
     </div>
     <div class="inside-grid reveal">
 
@@ -296,8 +326,8 @@ footer{padding:2.5rem 1.75rem;border-top:1px solid var(--border);text-align:cent
         <div class="ic-icon">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 3v18M15 3v18M3 9h18M3 15h18"/></svg>
         </div>
-        <h3>Desktop Application</h3>
-        <p>PyQt6-based launcher that boots the Flask server in the background and opens the dashboard in your default browser. No console window.</p>
+        <h3 data-i18n="inside.c1h">Desktop Application</h3>
+        <p data-i18n="inside.c1p">PyQt6-based launcher that boots the Flask server in the background and opens the dashboard in your default browser. No console window.</p>
         <span class="ic-file">IndustriaLink.exe</span>
       </div>
 
@@ -305,8 +335,8 @@ footer{padding:2.5rem 1.75rem;border-top:1px solid var(--border);text-align:cent
         <div class="ic-icon">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
         </div>
-        <h3>Configuration Files</h3>
-        <p>Pre-configured <code style="font-family:JetBrains Mono,monospace;font-size:0.78em;color:var(--teal)">config.json</code> for local SQL Server connection, MQTT broker settings, and PLC protocol preferences.</p>
+        <h3 data-i18n="inside.c2h">Configuration Files</h3>
+        <p data-i18n="inside.c2p">A simple settings interface to enter your database server address, PLC IP addresses, and MQTT broker. No manual file editing required.</p>
         <span class="ic-file">config/config.json</span>
       </div>
 
@@ -314,8 +344,8 @@ footer{padding:2.5rem 1.75rem;border-top:1px solid var(--border);text-align:cent
         <div class="ic-icon">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
         </div>
-        <h3>Database Schema</h3>
-        <p>SQL Server T-SQL migration scripts that auto-run on first launch to create all tables, indexes, and stored procedures.</p>
+        <h3 data-i18n="inside.c3h">Database Schema</h3>
+        <p data-i18n="inside.c3p">SQL Server T-SQL migration scripts that auto-run on first launch to create all tables, indexes, and stored procedures.</p>
         <span class="ic-file">db/migrations/</span>
       </div>
 
@@ -323,8 +353,8 @@ footer{padding:2.5rem 1.75rem;border-top:1px solid var(--border);text-align:cent
         <div class="ic-icon">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
         </div>
-        <h3>ML Models</h3>
-        <p>Pre-trained IsolationForest and RandomForest weights bundled for vibration analysis. XGBoost ensemble and Prophet models train on your own data post-install.</p>
+        <h3 data-i18n="inside.c4h">ML Models</h3>
+        <p data-i18n="inside.c4p">Pre-trained IsolationForest and RandomForest weights bundled for vibration analysis. XGBoost ensemble and Prophet models train on your own data post-install.</p>
         <span class="ic-file">models/pretrained/</span>
       </div>
 
@@ -332,8 +362,8 @@ footer{padding:2.5rem 1.75rem;border-top:1px solid var(--border);text-align:cent
         <div class="ic-icon">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
         </div>
-        <h3>Field App (PWA)</h3>
-        <p>Browser-based Progressive Web App for technicians — installable on mobile. Served automatically by the desktop platform on your local network at port 5001.</p>
+        <h3 data-i18n="inside.c5h">Field App (PWA)</h3>
+        <p data-i18n="inside.c5p">Browser-based Progressive Web App for technicians — installable on mobile. Served automatically by the desktop platform on your local network at port 5001.</p>
         <span class="ic-file">field_app/ (PWA)</span>
       </div>
 
@@ -341,8 +371,8 @@ footer{padding:2.5rem 1.75rem;border-top:1px solid var(--border);text-align:cent
         <div class="ic-icon">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
         </div>
-        <h3>Documentation</h3>
-        <p>Quick-start PDF guide, PLC wiring diagrams for S7-1200 and ESP32 nodes, API reference for the REST endpoints, and MQTT topic map.</p>
+        <h3 data-i18n="inside.c6h">Documentation</h3>
+        <p data-i18n="inside.c6p">Quick-start PDF guide, PLC wiring diagrams for S7-1200 and ESP32 nodes, API reference for the REST endpoints, and MQTT topic map.</p>
         <span class="ic-file">docs/quickstart.pdf</span>
       </div>
 
@@ -355,46 +385,46 @@ footer{padding:2.5rem 1.75rem;border-top:1px solid var(--border);text-align:cent
   <div class="section-wrap">
     <div class="reqs-inner">
       <div class="reveal">
-        <span class="eyebrow">System Requirements</span>
-        <h2 class="section-h">What you need<br>to run it</h2>
-        <p class="section-p">IndustriaLink is self-contained — the installer bundles the Python runtime. You only need SQL Server and a network connection to your PLCs.</p>
+        <span class="eyebrow" data-i18n="reqs.eyebrow">System Requirements</span>
+        <h2 class="section-h" data-i18n="reqs.h2">What you need<br>to run it</h2>
+        <p class="section-p" data-i18n="reqs.p">IndustriaLink is self-contained — the installer bundles the Python runtime. You only need SQL Server and a network connection to your PLCs.</p>
 
         <div class="req-table">
           <div class="req-row">
-            <div class="req-label">OS</div>
+            <div class="req-label" data-i18n="reqs.os">OS</div>
             <div class="req-val"><span class="ok">Windows 10 / 11</span> · 64-bit</div>
           </div>
           <div class="req-row">
-            <div class="req-label">CPU</div>
-            <div class="req-val">x64 · 2 GHz+ recommended</div>
+            <div class="req-label" data-i18n="reqs.cpu">CPU</div>
+            <div class="req-val" data-i18n="reqs.cpuval">x64 · 2 GHz+ recommended</div>
           </div>
           <div class="req-row">
-            <div class="req-label">RAM</div>
-            <div class="req-val">4 GB minimum · <span class="ok">8 GB recommended</span></div>
+            <div class="req-label" data-i18n="reqs.ram">RAM</div>
+            <div class="req-val"><span data-i18n="reqs.ramval">4 GB minimum · </span><span class="ok" data-i18n="reqs.ramok">8 GB recommended</span></div>
           </div>
           <div class="req-row">
-            <div class="req-label">Disk</div>
-            <div class="req-val">500 MB install · 2 GB+ for data</div>
+            <div class="req-label" data-i18n="reqs.disk">Disk</div>
+            <div class="req-val" data-i18n="reqs.diskval">500 MB install · 2 GB+ for data</div>
           </div>
           <div class="req-row">
-            <div class="req-label">Database</div>
-            <div class="req-val">SQL Server 2017+ <span class="warn">(required)</span></div>
+            <div class="req-label" data-i18n="reqs.db">Database</div>
+            <div class="req-val">SQL Server 2017+ <span class="warn" data-i18n="reqs.dbwarn">(required)</span></div>
           </div>
           <div class="req-row">
-            <div class="req-label">Network</div>
-            <div class="req-val">LAN access to PLCs / MQTT broker</div>
+            <div class="req-label" data-i18n="reqs.net">Network</div>
+            <div class="req-val" data-i18n="reqs.netval">LAN access to PLCs / MQTT broker</div>
           </div>
           <div class="req-row">
-            <div class="req-label">Browser</div>
-            <div class="req-val">Chrome / Edge recommended</div>
+            <div class="req-label" data-i18n="reqs.browser">Browser</div>
+            <div class="req-val" data-i18n="reqs.browserval">Chrome / Edge recommended</div>
           </div>
         </div>
       </div>
 
       <div class="reveal">
-        <span class="eyebrow">OS Compatibility</span>
-        <h2 class="section-h">Platform<br>support</h2>
-        <p class="section-p">Currently Windows-only. Linux and macOS builds are planned for a future release once the PyQt6 launcher is ported.</p>
+        <span class="eyebrow" data-i18n="compat.eyebrow">OS Compatibility</span>
+        <h2 class="section-h" data-i18n="compat.h2">Platform<br>support</h2>
+        <p class="section-p" data-i18n="compat.p">Currently Windows-only. Linux and macOS builds are planned for a future release once the PyQt6 launcher is ported.</p>
 
         <div class="compat-grid">
           <div class="compat-row">
@@ -402,35 +432,35 @@ footer{padding:2.5rem 1.75rem;border-top:1px solid var(--border);text-align:cent
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
               Windows 10 (64-bit)
             </span>
-            <span class="compat-badge badge-yes">Supported</span>
+            <span class="compat-badge badge-yes" data-i18n="compat.supported">Supported</span>
           </div>
           <div class="compat-row">
             <span class="compat-os">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
               Windows 11 (64-bit)
             </span>
-            <span class="compat-badge badge-yes">Supported</span>
+            <span class="compat-badge badge-yes" data-i18n="compat.supported">Supported</span>
           </div>
           <div class="compat-row">
             <span class="compat-os">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
               Linux (Ubuntu/Debian)
             </span>
-            <span class="compat-badge badge-soon">Planned</span>
+            <span class="compat-badge badge-soon" data-i18n="compat.planned">Planned</span>
           </div>
           <div class="compat-row">
             <span class="compat-os">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
               macOS
             </span>
-            <span class="compat-badge badge-no">Not yet</span>
+            <span class="compat-badge badge-no" data-i18n="compat.notyet">Not yet</span>
           </div>
           <div class="compat-row">
             <span class="compat-os">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
               Windows 32-bit
             </span>
-            <span class="compat-badge badge-no">Not supported</span>
+            <span class="compat-badge badge-no" data-i18n="compat.notsupported">Not supported</span>
           </div>
         </div>
       </div>
@@ -442,8 +472,8 @@ footer{padding:2.5rem 1.75rem;border-top:1px solid var(--border);text-align:cent
 <section class="install" id="install">
   <div class="section-wrap">
     <div class="install-header reveal">
-      <span class="eyebrow">Installation Guide</span>
-      <h2 class="section-h">Up and running in 5 minutes</h2>
+      <span class="eyebrow" data-i18n="install.eyebrow">Installation Guide</span>
+      <h2 class="section-h" data-i18n="install.h2">Up and running in 5 minutes</h2>
     </div>
     <div class="steps reveal">
 
@@ -453,8 +483,8 @@ footer{padding:2.5rem 1.75rem;border-top:1px solid var(--border);text-align:cent
           <div class="step-line"></div>
         </div>
         <div class="step-body">
-          <div class="step-title">Download the installer</div>
-          <div class="step-desc">Click the download button above to get <code style="font-family:JetBrains Mono,monospace;color:var(--teal);font-size:0.85em">IndustriaLink-Setup-1.0.0.exe</code> from GitHub Releases. Verify the SHA-256 checksum if needed.</div>
+          <div class="step-title" data-i18n="step1.title">Download the installer</div>
+          <div class="step-desc" data-i18n="step1.desc">Click the download button above to get <code style="font-family:JetBrains Mono,monospace;color:var(--teal);font-size:0.85em">IndustriaLink-Setup-1.0.0.exe</code> from GitHub Releases. Verify the SHA-256 checksum if needed.</div>
         </div>
       </div>
 
@@ -464,11 +494,11 @@ footer{padding:2.5rem 1.75rem;border-top:1px solid var(--border);text-align:cent
           <div class="step-line"></div>
         </div>
         <div class="step-body">
-          <div class="step-title">Run the setup wizard</div>
-          <div class="step-desc">Right-click the installer and select "Run as administrator". The wizard will guide you through the install path and create a desktop shortcut automatically.</div>
+          <div class="step-title" data-i18n="step2.title">Run the setup wizard</div>
+          <div class="step-desc" data-i18n="step2.desc">Right-click the installer and select "Run as administrator". The wizard will guide you through the install path and create a desktop shortcut automatically.</div>
           <div class="step-note">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
-            Windows SmartScreen may show a warning on first run. Click "More info → Run anyway" — the binary is unsigned for now.
+            <span data-i18n="step2.note">Windows SmartScreen may show a warning on first run. Click "More info → Run anyway" — the binary is unsigned for now.</span>
           </div>
         </div>
       </div>
@@ -479,15 +509,9 @@ footer{padding:2.5rem 1.75rem;border-top:1px solid var(--border);text-align:cent
           <div class="step-line"></div>
         </div>
         <div class="step-body">
-          <div class="step-title">Configure your SQL Server connection</div>
-          <div class="step-desc">Open <code style="font-family:JetBrains Mono,monospace;color:var(--teal);font-size:0.85em">config/config.json</code> in the install directory and fill in your SQL Server host, database name, and credentials.</div>
-          <code class="step-code"><span class="cmt">// config/config.json</span>
-{
-  "db_server": "localhost\\SQLEXPRESS",
-  "db_name": "industrialink",
-  "db_user": "sa",
-  "db_password": "your_password"
-}</code>
+          <div class="step-title" data-i18n="step3.title">Configure your SQL Server connection</div>
+          <div class="step-desc" data-i18n="step3.desc">Open <code style="font-family:JetBrains Mono,monospace;color:var(--teal);font-size:0.85em">config/config.json</code> in the install directory and fill in your SQL Server host, database name, and credentials.</div>
+
         </div>
       </div>
 
@@ -497,8 +521,8 @@ footer{padding:2.5rem 1.75rem;border-top:1px solid var(--border);text-align:cent
           <div class="step-line"></div>
         </div>
         <div class="step-body">
-          <div class="step-title">Launch IndustriaLink</div>
-          <div class="step-desc">Double-click the desktop shortcut. The PyQt6 launcher boots the server and opens the platform in your browser at <code style="font-family:JetBrains Mono,monospace;color:var(--teal);font-size:0.85em">http://localhost:5000</code>. Database tables are created automatically on first run.</div>
+          <div class="step-title" data-i18n="step4.title">Launch IndustriaLink</div>
+          <div class="step-desc" data-i18n="step4.desc">Double-click the desktop shortcut. The PyQt6 launcher boots the server and opens the platform in your browser at <code style="font-family:JetBrains Mono,monospace;color:var(--teal);font-size:0.85em">http://localhost:5000</code>. Database tables are created automatically on first run.</div>
         </div>
       </div>
 
@@ -508,11 +532,11 @@ footer{padding:2.5rem 1.75rem;border-top:1px solid var(--border);text-align:cent
           <div class="step-line"></div>
         </div>
         <div class="step-body">
-          <div class="step-title">Connect your first PLC or device</div>
-          <div class="step-desc">Log in as Admin, go to Settings → PLC Connections, and add your Siemens S7-1200 (port 102), Modbus TCP device (port 502), or MQTT broker. The live monitor will populate immediately after the first poll cycle.</div>
+          <div class="step-title" data-i18n="step5.title">Connect your first PLC or device</div>
+          <div class="step-desc" data-i18n="step5.desc">Log in as Admin, go to Settings → PLC Connections, and add your Siemens S7-1200 (port 102), Modbus TCP device (port 502), or MQTT broker. The live monitor will populate immediately after the first poll cycle.</div>
           <div class="step-note">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
-            For Siemens S7-1200: disable "Optimized block access" on your DB in TIA Portal and enable PUT/GET communication before connecting.
+            <span data-i18n="step5.note">For Siemens S7-1200: disable "Optimized block access" on your DB in TIA Portal and enable PUT/GET communication before connecting.</span>
           </div>
         </div>
       </div>
@@ -527,31 +551,31 @@ footer{padding:2.5rem 1.75rem;border-top:1px solid var(--border);text-align:cent
     <div class="changelog-inner reveal">
 
       <div class="cl-sidebar">
-        <span class="eyebrow">Release Notes</span>
+        <span class="eyebrow" data-i18n="cl.eyebrow">Release Notes</span>
         <div class="cl-ver-block">
           <div class="cl-ver-num">v1.0.0</div>
-          <div class="cl-ver-date">June 2026 · Initial Release</div>
-          <span class="cl-tag">Stable</span>
+          <div class="cl-ver-date" data-i18n="cl.date">June 2026 · Initial Release</div>
+          <span class="cl-tag" data-i18n="cl.stable">Stable</span>
           <div class="cl-stat">
             <div class="cl-stat-row">
-              <span class="cl-stat-lbl">UI Pages</span>
+              <span class="cl-stat-lbl" data-i18n="cl.pages">UI Pages</span>
               <span class="cl-stat-val">41</span>
             </div>
             <div class="cl-stat-row">
-              <span class="cl-stat-lbl">PLC Protocols</span>
+              <span class="cl-stat-lbl" data-i18n="cl.protocols">PLC Protocols</span>
               <span class="cl-stat-val">6</span>
             </div>
             <div class="cl-stat-row">
-              <span class="cl-stat-lbl">ML Models</span>
+              <span class="cl-stat-lbl" data-i18n="cl.ml">ML Models</span>
               <span class="cl-stat-val">5</span>
             </div>
             <div class="cl-stat-row">
-              <span class="cl-stat-lbl">Access Roles</span>
+              <span class="cl-stat-lbl" data-i18n="cl.roles">Access Roles</span>
               <span class="cl-stat-val">4</span>
             </div>
             <div class="cl-stat-row">
-              <span class="cl-stat-lbl">Platform</span>
-              <span class="cl-stat-val">Windows x64</span>
+              <span class="cl-stat-lbl" data-i18n="cl.platform">Platform</span>
+              <span class="cl-stat-val" data-i18n="cl.platformval">Windows x64</span>
             </div>
           </div>
         </div>
@@ -560,67 +584,60 @@ footer{padding:2.5rem 1.75rem;border-top:1px solid var(--border);text-align:cent
       <div class="cl-entries">
         <div class="cl-entry">
           <div class="cl-entry-head">
-            <span class="cl-type type-new">New</span>
-            <span class="cl-entry-title">Desktop application packaging with PyQt6 + PyInstaller + Inno Setup</span>
+            <span class="cl-type type-new" data-i18n="tag.new">New</span>
+            <span class="cl-entry-title" data-i18n="cl.e1t">Desktop application packaging with PyQt6 + PyInstaller + Inno Setup</span>
           </div>
-          <div class="cl-entry-body">Platform converted from a web app to a Windows desktop application. The PyQt6 launcher boots Flask/Werkzeug in the background, redirects all server logs into the launcher window, and eliminates the console window entirely.</div>
+          <div class="cl-entry-body" data-i18n="cl.e1b">Platform converted from a web app to a Windows desktop application. The PyQt6 launcher boots Flask/Werkzeug in the background, redirects all server logs into the launcher window, and eliminates the console window entirely.</div>
         </div>
 
         <div class="cl-entry">
           <div class="cl-entry-head">
-            <span class="cl-type type-new">New</span>
-            <span class="cl-entry-title">ML Dataset Validation — CWRU bearing fault classification</span>
+            <span class="cl-type type-new" data-i18n="tag.new">New</span>
+            <span class="cl-entry-title" data-i18n="cl.e2t">ML Dataset Validation — CWRU bearing fault classification</span>
           </div>
-          <div class="cl-entry-body">New vibration analysis tab with drag-and-drop CSV upload, tri-axial feature extraction, RandomForest classifier (200 estimators, balanced class weights), file-level GroupKFold CV to prevent data leakage, and RUL estimation. PDF/Excel export via jsPDF and SheetJS.</div>
+          <div class="cl-entry-body" data-i18n="cl.e2b">New vibration analysis tab with drag-and-drop CSV upload, tri-axial feature extraction, RandomForest classifier (200 estimators, balanced class weights), file-level GroupKFold CV to prevent data leakage, and RUL estimation. PDF/Excel export via jsPDF and SheetJS.</div>
         </div>
 
         <div class="cl-entry">
           <div class="cl-entry-head">
-            <span class="cl-type type-new">New</span>
-            <span class="cl-entry-title">Prescriptive maintenance engine with multi-plan scoring</span>
+            <span class="cl-type type-new" data-i18n="tag.new">New</span>
+            <span class="cl-entry-title" data-i18n="cl.e3t">Prescriptive maintenance engine with multi-plan scoring</span>
           </div>
-          <div class="cl-entry-body">Five ranked maintenance plans generated per asset using fault-profile tables, global Pareto normalization, safety-critical override logic, and dynamic risk reduction from failure_prob and health_score. Confidence flag for tied scores.</div>
+          <div class="cl-entry-body" data-i18n="cl.e3b">Five ranked maintenance plans generated per asset using fault-profile tables, global Pareto normalization, safety-critical override logic, and dynamic risk reduction from failure_prob and health_score. Confidence flag for tied scores.</div>
         </div>
 
         <div class="cl-entry">
           <div class="cl-entry-head">
-            <span class="cl-type type-new">New</span>
-            <span class="cl-entry-title">GMAO parts request & approval workflow</span>
+            <span class="cl-type type-new" data-i18n="tag.new">New</span>
+            <span class="cl-entry-title" data-i18n="cl.e4t">GMAO parts request & approval workflow</span>
           </div>
-          <div class="cl-entry-body">Technicians submit parts requests with urgency levels via the Field App. Admins approve or reject from a unified panel in gmao.html. Replaces direct inventory deduction with a full audit trail and badge counts.</div>
+          <div class="cl-entry-body" data-i18n="cl.e4b">Technicians submit parts requests with urgency levels via the Field App. Admins approve or reject from a unified panel in gmao.html. Replaces direct inventory deduction with a full audit trail and badge counts.</div>
         </div>
 
         <div class="cl-entry">
           <div class="cl-entry-head">
-            <span class="cl-type type-fix">Fix</span>
-            <span class="cl-entry-title">SQL Server T-SQL dialect — full SQLite syntax removal</span>
+            <span class="cl-type type-fix" data-i18n="tag.fix">Fix</span>
+            <span class="cl-entry-title" data-i18n="cl.e5t">SQL Server T-SQL dialect — full SQLite syntax removal</span>
           </div>
-          <div class="cl-entry-body">Replaced all SQLite-specific syntax (AUTOINCREMENT, strftime, PRAGMA) with T-SQL equivalents (IDENTITY, CONVERT, sys.columns) across the entire codebase for full SQL Server 2017+ compatibility.</div>
+          <div class="cl-entry-body" data-i18n="cl.e5b">Replaced all SQLite-specific syntax (AUTOINCREMENT, strftime, PRAGMA) with T-SQL equivalents (IDENTITY, CONVERT, sys.columns) across the entire codebase for full SQL Server 2017+ compatibility.</div>
         </div>
 
         <div class="cl-entry">
           <div class="cl-entry-head">
-            <span class="cl-type type-fix">Fix</span>
-            <span class="cl-entry-title">Siemens S7-1200 snap7 connection — optimized block access</span>
+            <span class="cl-type type-fix" data-i18n="tag.fix">Fix</span>
+            <span class="cl-entry-title" data-i18n="cl.e6t">Siemens S7-1200 snap7 connection — optimized block access</span>
           </div>
-          <div class="cl-entry-body">Diagnosed and documented the TIA Portal "Optimized block access" issue that prevented snap7 from reading DB variables by absolute byte offset. Added setup guide for disabling this and enabling PUT/GET communication.</div>
+          <div class="cl-entry-body" data-i18n="cl.e6b">Diagnosed and documented the TIA Portal "Optimized block access" issue that prevented snap7 from reading DB variables by absolute byte offset. Added setup guide for disabling this and enabling PUT/GET communication.</div>
         </div>
 
         <div class="cl-entry">
           <div class="cl-entry-head">
-            <span class="cl-type type-improve">Improve</span>
-            <span class="cl-entry-title">Thread-safety and connection pool hardening</span>
+            <span class="cl-type type-improve" data-i18n="tag.improve">Improve</span>
+            <span class="cl-entry-title" data-i18n="cl.e7t">Thread-safety and connection pool hardening</span>
           </div>
-          <div class="cl-entry-body">Added _driver_lock across all PLC driver access paths, fixed non-atomic cooldown/pump activation, resolved connection leaks in kpi_iiot.py and five other API endpoints, and corrected background threads calling conn.close() instead of returning to pool.</div>
+          <div class="cl-entry-body" data-i18n="cl.e7b">Added _driver_lock across all PLC driver access paths, fixed non-atomic cooldown/pump activation, resolved connection leaks in kpi_iiot.py and five other API endpoints, and corrected background threads calling conn.close() instead of returning to pool.</div>
         </div>
 
-        <div class="cl-entry">
-          <div class="cl-entry-head">
-            <span class="cl-type type-improve">Improve</span>
-            <span class="cl-entry-title">Fractional BOOL offset fix in read_db_batch</span>
-          </div>
-          <div class="cl-entry-body">Fixed truncation of fractional bit offsets for BOOL variables in the PLC driver's batch read path. BOOL variables at non-integer byte positions now resolve correctly.</div>
-        </div>
       </div>
 
     </div>
@@ -630,35 +647,242 @@ footer{padding:2.5rem 1.75rem;border-top:1px solid var(--border);text-align:cent
 <!-- CTA -->
 <section class="cta">
   <div class="cta-inner">
-    <span class="eyebrow" style="justify-content:center"><span style="display:none"></span>Ready to deploy</span>
-    <h2>Your plant.<br>Your <span class="accent">data</span>. Your network.</h2>
-    <p>No cloud subscription. No per-seat licensing. Install once, run on your LAN, connect your PLCs in minutes.</p>
+    <span class="eyebrow" style="justify-content:center"><span style="display:none"></span><span data-i18n="cta.eyebrow">Ready to deploy</span></span>
+    <h2><span data-i18n="cta.h2a">Your plant.</span><br><span data-i18n="cta.h2b">Your </span><span class="accent" data-i18n="cta.h2c">data</span><span data-i18n="cta.h2d">. Your network.</span></h2>
+    <p data-i18n="cta.p">No cloud subscription. No per-seat licensing. Install once, run on your LAN, connect your PLCs in minutes.</p>
     <div class="cta-btns">
       <a href="https://github.com/indlink/industrialink/releases/download/v1.0.0/IndustriaLink-Setup-v1.0.0.exe" class="btn-primary">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-        Download v1.0.0
+        <span data-i18n="cta.btn">Download v1.0.0</span>
       </a>
-      <a href="#install" class="btn-secondary">View Install Guide</a>
+      <a href="#install" class="btn-secondary" data-i18n="cta.guide">View Install Guide</a>
     </div>
   </div>
 </section>
 
 <footer>
   <div class="footer-logo-text">Industria<span>Link</span></div>
-  <div class="footer-copy">© 2026 IndustriaLink · Industrial Intelligence Platform · v1.0.0</div>
+  <div class="footer-copy" data-i18n="footer.copy">© 2026 IndustriaLink · Industrial Intelligence Platform · v1.0.0</div>
   <div class="footer-tags">
-    <span class="f-tag">Flask / Python</span>
-    <span class="f-tag">PyQt6 · PyInstaller</span>
-    <span class="f-tag">SQL Server</span>
-    <span class="f-tag">snap7 · Modbus · OPC-UA</span>
-    <span class="f-tag">MQTT / IIoT</span>
-    <span class="f-tag">XGBoost · Prophet · LSTM</span>
+    <span class="f-tag">Siemens S7-1200</span>
+    <span class="f-tag">Modbus TCP · OPC-UA</span>
+    <span class="f-tag">MQTT · IIoT</span>
+    <span class="f-tag">Vibration Analysis · RUL</span>
+    <span class="f-tag">CMMS · GMAO</span>
+    <span class="f-tag">AI Diagnostics</span>
     <span class="f-tag">Windows x64</span>
   </div>
 </footer>
 
 <script>
-// Theme toggle
+// ─── TRANSLATIONS ───
+const i18n = {
+  en: {
+    'nav.inside': "What's Inside",
+    'nav.requirements': 'Requirements',
+    'nav.install': 'Install Guide',
+    'nav.changelog': 'Changelog',
+    'nav.download': '↓ Download',
+    'hero.badge': 'v1.0.0 · First Release · June 2026',
+    'hero.h1a': 'Download',
+    'hero.sub': 'A complete monitoring, maintenance, and automation platform built for industrial plants. Installed once on your local network — no internet connection or subscription required.',
+    'dl.chip1': 'Windows 10/11 · 64-bit',
+    'dl.chip2': '173 MB · Inno Setup',
+    'dl.chip3': 'Jun 2026',
+    'dl.btn': 'Download for Windows',
+    'dl.btnsub': 'IndustriaLink-Setup-v1.0.0.exe · 173 MB · Free',
+    'dl.github': 'View on GitHub',
+    'inside.eyebrow': 'Package Contents',
+    'inside.h2': 'Everything in the installer',
+    'inside.p': 'The setup wizard handles everything automatically. No prior software setup required — just install on any plant PC and launch.',
+    'inside.c1h': 'Control Dashboard',
+    'inside.c1p': 'A native Windows application that launches the monitoring dashboard directly on your screen. No browser configuration needed — double-click and it opens.',
+    'inside.c2h': 'Connection Settings',
+    'inside.c2p': 'A simple settings interface to enter your database server address, PLC IP addresses, and MQTT broker. No manual file editing required.',
+    'inside.c3h': 'Industrial Database',
+    'inside.c3p': 'A pre-configured local database that stores all equipment data, alarms, work orders, and maintenance history. Created automatically on first launch.',
+    'inside.c4h': 'AI Diagnostic Engine',
+    'inside.c4p': 'Pre-trained models for bearing fault detection, vibration anomaly detection, and remaining useful life estimation. Ready to use from day one with no model configuration.',
+    'inside.c5h': 'Technician Mobile App',
+    'inside.c5p': 'A mobile-ready application for field technicians — accessible from any phone or tablet connected to the plant network. Supports work orders, inspections, and parts requests.',
+    'inside.c6h': 'Documentation',
+    'inside.c6p': 'Quick-start guide, PLC wiring diagrams for Siemens S7-1200 and ESP32 sensor nodes, and a complete user manual for operators and maintenance engineers.',
+    'reqs.eyebrow': 'System Requirements',
+    'reqs.h2': 'What you need<br>to run it',
+    'reqs.p': 'IndustriaLink installs like any standard Windows software. All components are bundled — no additional software installation needed except a database server.',
+    'reqs.os': 'Operating System', 'reqs.cpu': 'CPU', 'reqs.ram': 'RAM', 'reqs.disk': 'Disk', 'reqs.db': 'Database Server', 'reqs.net': 'Network', 'reqs.browser': 'Browser',
+    'reqs.cpuval': '64-bit processor · 2 GHz or faster',
+    'reqs.ramval': '4 GB minimum · ',
+    'reqs.ramok': '8 GB recommended for large plants',
+    'reqs.diskval': '500 MB for installation · 2 GB+ for historical data',
+    'reqs.dbwarn': '(required — free Express edition supported)',
+    'reqs.netval': 'Local network connection to PLCs and field devices',
+    'reqs.browserval': 'Any modern web browser (for dashboard access)',
+    'compat.eyebrow': 'OS Compatibility',
+    'compat.h2': 'Platform<br>support',
+    'compat.p': 'Currently available for Windows only. Support for other operating systems is planned in a future release.',
+    'compat.supported': 'Supported',
+    'compat.planned': 'Planned',
+    'compat.notyet': 'Not yet',
+    'compat.notsupported': 'Not supported',
+    'install.eyebrow': 'Installation Guide',
+    'install.h2': 'Up and running in 5 minutes',
+    'step1.title': 'Download the installer',
+    'step1.desc': 'Click the download button above. The installer file will be saved to your Downloads folder.',
+    'step2.title': 'Run the setup wizard',
+    'step2.desc': 'Right-click the installer and select "Run as administrator". The setup wizard will guide you step by step and create a desktop shortcut automatically.',
+    'step2.note': 'Windows may display a security prompt. Click "More info" then "Run anyway" to proceed with the installation.',
+    'step3.title': 'Enter your database connection',
+    'step3.desc': 'On first launch, a setup screen will prompt you for your database server address and login credentials. All other settings have sensible defaults.',
+    'step4.title': 'Launch IndustriaLink',
+    'step4.desc': 'Double-click the IndustriaLink shortcut on your desktop. The platform will start and the dashboard will open automatically. All database tables are created on first run.',
+    'step5.title': 'Connect your PLCs and field devices',
+    'step5.desc': 'Log in as Administrator, go to Settings → PLC Connections, and enter the IP address of your Siemens S7-1200, Modbus TCP devices, or MQTT-enabled sensors. Live data will appear within seconds.',
+    'step5.note': 'For Siemens S7-1200: make sure PUT/GET communication is enabled in TIA Portal before adding the PLC. See the included wiring guide for details.',
+    'cl.eyebrow': 'Release Notes',
+    'cl.date': 'June 2026 · Initial Release',
+    'cl.stable': 'Stable',
+    'cl.pages': 'UI Pages', 'cl.protocols': 'PLC Protocols', 'cl.ml': 'ML Models', 'cl.roles': 'Access Roles', 'cl.platform': 'Platform', 'cl.platformval': 'Windows x64',
+    'tag.new': 'New', 'tag.fix': 'Fix', 'tag.improve': 'Improve',
+    'cl.e1t': 'Native Windows desktop application',
+    'cl.e1b': 'IndustriaLink is now a native Windows application — install it like any standard software and launch from a desktop shortcut. No browser setup or server management required from the operator side.',
+    'cl.e2t': 'Bearing fault detection — vibration analysis module',
+    'cl.e2b': 'New vibration analysis module that detects inner race, outer race, and ball defects from accelerometer data. Automatically estimates remaining useful life and exports diagnostic reports to PDF or Excel.',
+    'cl.e3t': 'Prescriptive maintenance — ranked action plans per asset',
+    'cl.e3b': 'For each monitored asset, the system now generates up to five ranked maintenance action plans based on fault type, health score, and failure risk. Safety-critical situations automatically override lower-priority plans.',
+    'cl.e4t': 'GMAO parts request & approval workflow',
+    'cl.e4b': 'Technicians can now submit spare parts requests directly from their mobile devices, specifying urgency level. Supervisors review and approve or reject requests from a central panel, with a full audit trail of all actions.',
+    'cl.e5t': 'Improved database reliability and compatibility',
+    'cl.e5b': 'The database layer has been fully updated for compatibility with SQL Server 2017 and later, including the free Express edition. This ensures stable operation in industrial environments that use standard Microsoft infrastructure.',
+    'cl.e6t': 'Siemens S7-1200 connectivity — TIA Portal setup guide',
+    'cl.e6b': 'Resolved a connection issue affecting Siemens S7-1200 PLCs. A step-by-step TIA Portal configuration guide is now included in the documentation to ensure correct communication setup.',
+    'cl.e7t': 'Improved platform stability under continuous operation',
+    'cl.e7b': 'Multiple stability improvements for long-running deployments: resolved intermittent connection drops during high-frequency polling, corrected pump and actuator activation timing, and fixed data loss issues that could occur after extended operation.',
+    'cta.eyebrow': 'Ready to deploy',
+    'cta.h2a': 'Your plant.', 'cta.h2b': 'Your ', 'cta.h2c': 'data', 'cta.h2d': '. Your network.',
+    'cta.p': 'No cloud subscription. No per-seat licensing. Install once, run on your LAN, connect your PLCs in minutes.',
+    'cta.btn': 'Download v1.0.0',
+    'cta.guide': 'View Install Guide',
+    'footer.copy': '© 2026 IndustriaLink · Industrial Intelligence Platform · v1.0.0',
+  },
+  ar: {
+    'nav.inside': 'محتويات الحزمة',
+    'nav.requirements': 'المتطلبات',
+    'nav.install': 'دليل التثبيت',
+    'nav.changelog': 'سجل التغييرات',
+    'nav.download': '↓ تحميل',
+    'hero.badge': 'الإصدار 1.0.0 · الإطلاق الأول · يونيو 2026',
+    'hero.h1a': 'حمّل',
+    'hero.sub': 'منصة متكاملة للمراقبة والصيانة والتحكم الصناعي، مُثبَّتة مرة واحدة على شبكة مصنعك المحلية — بدون اشتراك أو اتصال بالإنترنت.',
+    'dl.chip1': 'ويندوز 10/11 · 64-bit',
+    'dl.chip2': '173 ميجابايت · Inno Setup',
+    'dl.chip3': 'يونيو 2026',
+    'dl.btn': 'تحميل لويندوز',
+    'dl.btnsub': 'IndustriaLink-Setup-v1.0.0.exe · 173 MB · مجاني',
+    'dl.github': 'عرض على GitHub',
+    'inside.eyebrow': 'محتويات الحزمة',
+    'inside.h2': 'كل ما يحتويه المثبّت',
+    'inside.p': 'يتولى معالج الإعداد كل شيء تلقائياً. لا يلزم أي إعداد برمجي مسبق — فقط ثبّت على أي حاسوب في المصنع وشغّل.',
+    'inside.c1h': 'لوحة التحكم والمراقبة',
+    'inside.c1p': 'تطبيق ويندوز يفتح لوحة المراقبة مباشرةً على شاشتك. لا يلزم أي إعداد — انقر نقراً مزدوجاً وسيعمل فوراً.',
+    'inside.c2h': 'إعدادات الاتصال',
+    'inside.c2p': 'واجهة إعداد بسيطة لإدخال عنوان قاعدة البيانات وعناوين IP الخاصة بـ PLCs ووسيط MQTT. لا حاجة لتعديل أي ملفات يدوياً.',
+    'inside.c3h': 'قاعدة البيانات الصناعية',
+    'inside.c3p': 'قاعدة بيانات محلية جاهزة تخزّن بيانات المعدات والأعطال وأوامر العمل وسجلات الصيانة. تُنشأ تلقائياً عند أول تشغيل.',
+    'inside.c4h': 'محرك التشخيص بالذكاء الاصطناعي',
+    'inside.c4p': 'نماذج مُدرَّبة مسبقاً للكشف عن أعطال المحامل، وتحديد شذوذات الاهتزاز، وتقدير العمر المتبقي للمعدات. جاهزة للاستخدام من اليوم الأول.',
+    'inside.c5h': 'تطبيق الفنيين الميداني',
+    'inside.c5p': 'تطبيق للفنيين يعمل على أي هاتف أو جهاز لوحي متصل بشبكة المصنع. يدعم أوامر العمل والجولات التفتيشية وطلبات قطع الغيار.',
+    'inside.c6h': 'الوثائق',
+    'inside.c6p': 'دليل بدء سريع، مخططات توصيل PLC لـ Siemens S7-1200 وعقد الاستشعار ESP32، ودليل مستخدم كامل للمشغلين ومهندسي الصيانة.',
+    'reqs.eyebrow': 'متطلبات النظام',
+    'reqs.h2': 'ما تحتاجه<br>لتشغيله',
+    'reqs.p': 'يُثبَّت IndustriaLink كأي برنامج ويندوز عادي. جميع المكوّنات مُدمجة في المثبّت — لا يلزم سوى خادم قاعدة بيانات واتصال شبكي بالأجهزة.',
+    'reqs.os': 'نظام التشغيل', 'reqs.cpu': 'المعالج', 'reqs.ram': 'الذاكرة العشوائية', 'reqs.disk': 'مساحة التخزين', 'reqs.db': 'خادم قاعدة البيانات', 'reqs.net': 'الشبكة', 'reqs.browser': 'المتصفح',
+    'reqs.cpuval': 'معالج 64-بت · 2 جيجاهرتز أو أسرع',
+    'reqs.ramval': '4 جيجابايت كحد أدنى · ',
+    'reqs.ramok': '8 جيجابايت موصى به للمصانع الكبيرة',
+    'reqs.diskval': '500 ميجابايت للتثبيت · 2 جيجابايت+ للبيانات التاريخية',
+    'reqs.dbwarn': '(مطلوب — الإصدار المجاني Express مدعوم)',
+    'reqs.netval': 'اتصال شبكة محلية بـ PLCs والأجهزة الميدانية',
+    'reqs.browserval': 'أي متصفح حديث (للوصول إلى لوحة التحكم)',
+    'compat.eyebrow': 'توافق أنظمة التشغيل',
+    'compat.h2': 'دعم<br>المنصات',
+    'compat.p': 'متوفر حالياً لويندوز فقط. دعم أنظمة تشغيل أخرى مخطط له في إصدار مستقبلي.',
+    'compat.supported': 'مدعوم',
+    'compat.planned': 'مخطط',
+    'compat.notyet': 'قريباً',
+    'compat.notsupported': 'غير مدعوم',
+    'install.eyebrow': 'دليل التثبيت',
+    'install.h2': 'جاهز للعمل في 5 دقائق',
+    'step1.title': 'تحميل المثبّت',
+    'step1.desc': 'انقر على زر التحميل أعلاه. سيُحفظ ملف التثبيت تلقائياً في مجلد التنزيلات.',
+    'step2.title': 'تشغيل معالج الإعداد',
+    'step2.desc': 'انقر بزر الماوس الأيمن على ملف التثبيت واختر "تشغيل كمسؤول". سيرشدك المعالج خطوة بخطوة وينشئ اختصاراً على سطح المكتب تلقائياً.',
+    'step2.note': 'قد يظهر تنبيه أمان من ويندوز. انقر "مزيد من المعلومات" ثم "تشغيل على أي حال" لمتابعة التثبيت.',
+    'step3.title': 'إدخال بيانات الاتصال بقاعدة البيانات',
+    'step3.desc': 'عند أول تشغيل، ستظهر شاشة إعداد تطلب منك إدخال عنوان خادم قاعدة البيانات وبيانات تسجيل الدخول. بقية الإعدادات جاهزة بقيم افتراضية مناسبة.',
+    'step4.title': 'تشغيل IndustriaLink',
+    'step4.desc': 'انقر نقراً مزدوجاً على اختصار IndustriaLink على سطح المكتب. ستنطلق المنصة وتفتح لوحة التحكم تلقائياً. يتم إنشاء قاعدة البيانات كاملةً عند أول تشغيل.',
+    'step5.title': 'توصيل PLCs والأجهزة الميدانية',
+    'step5.desc': 'سجّل الدخول كمسؤول، اذهب إلى الإعدادات ← اتصالات PLC، وأدخل عنوان IP الخاص بـ Siemens S7-1200 أو أجهزة Modbus أو حساسات MQTT. ستظهر البيانات المباشرة خلال ثوانٍ.',
+    'step5.note': 'لـ Siemens S7-1200: تأكد من تفعيل اتصال PUT/GET في TIA Portal قبل إضافة الـ PLC. راجع دليل التوصيل المرفق للتفاصيل.',
+    'cl.eyebrow': 'ملاحظات الإصدار',
+    'cl.date': 'يونيو 2026 · الإصدار الأولي',
+    'cl.stable': 'مستقر',
+    'cl.pages': 'صفحات الواجهة', 'cl.protocols': 'بروتوكولات PLC', 'cl.ml': 'نماذج ML', 'cl.roles': 'أدوار الوصول', 'cl.platform': 'المنصة', 'cl.platformval': 'ويندوز 64-بت',
+    'tag.new': 'جديد', 'tag.fix': 'إصلاح', 'tag.improve': 'تحسين',
+    'cl.e1t': 'تطبيق ويندوز أصلي قابل للتثبيت',
+    'cl.e1b': 'أصبح IndustriaLink تطبيق ويندوز أصلياً — ثبّته كأي برنامج وشغّله من اختصار على سطح المكتب. لا إعداد للخادم أو المتصفح مطلوب من جانب المشغّل.',
+    'cl.e2t': 'وحدة تحليل الاهتزاز وتشخيص أعطال المحامل',
+    'cl.e2b': 'وحدة جديدة تكشف عن أعطال الحلقة الداخلية والخارجية وكرات المحمل من بيانات مقاييس التسارع. تُقدّر تلقائياً العمر المتبقي وتُصدر تقارير تشخيصية بصيغة PDF أو Excel.',
+    'cl.e3t': 'الصيانة الوصفية — خطط عمل مُصنَّفة لكل أصل',
+    'cl.e3b': 'يُنتج النظام لكل أصل مُراقَب حتى خمس خطط صيانة مُصنَّفة استناداً إلى نوع العطل ودرجة الصحة ومستوى خطر الفشل. تتجاوز الحالات الحرجة من حيث السلامة تلقائياً الخطط ذات الأولوية المنخفضة.',
+    'cl.e4t': 'سير عمل طلب قطع الغيار والموافقة في GMAO',
+    'cl.e4b': 'يستطيع الفنيون الآن تقديم طلبات قطع الغيار مباشرةً من هواتفهم مع تحديد مستوى الإلحاح. يراجع المشرفون الطلبات ويوافقون عليها أو يرفضونها من لوحة مركزية، مع سجل تدقيق كامل لجميع الإجراءات.',
+    'cl.e5t': 'تحسين موثوقية قاعدة البيانات والتوافق',
+    'cl.e5b': 'تم تحديث طبقة قاعدة البيانات لضمان التوافق الكامل مع SQL Server 2017 وما بعده، بما في ذلك الإصدار المجاني Express. يضمن ذلك استقراراً أكبر في البيئات الصناعية التي تعتمد بنية تحتية مايكروسوفت قياسية.',
+    'cl.e6t': 'توصيل Siemens S7-1200 — دليل إعداد TIA Portal',
+    'cl.e6b': 'تم حل مشكلة اتصال كانت تؤثر على PLCs من طراز Siemens S7-1200. يتضمن الإصدار الآن دليل إعداد خطوة بخطوة في TIA Portal لضمان ضبط الاتصال بشكل صحيح.',
+    'cl.e7t': 'تحسين استقرار المنصة في التشغيل المستمر',
+    'cl.e7b': 'تحسينات متعددة للاستقرار في عمليات النشر طويلة الأمد: حل انقطاعات الاتصال المتقطعة خلال الاستطلاع بتردد عالٍ، وتصحيح توقيت تنشيط المضخات والمحركات، وإصلاح مشاكل فقدان البيانات التي قد تحدث بعد تشغيل مطوّل.',
+    'cta.eyebrow': 'جاهز للنشر',
+    'cta.h2a': 'مصنعك.', 'cta.h2b': 'بياناتك', 'cta.h2c': ' الخاصة', 'cta.h2d': '. شبكتك.',
+    'cta.p': 'لا اشتراك سحابي. لا ترخيص لكل مقعد. ثبّت مرة واحدة، اعمل على شبكة LAN الخاصة بك، وصّل PLCs خلال دقائق.',
+    'cta.btn': 'تحميل الإصدار 1.0.0',
+    'cta.guide': 'عرض دليل التثبيت',
+    'footer.copy': '© 2026 IndustriaLink · منصة الذكاء الصناعي · الإصدار 1.0.0',
+  }
+};
+
+// ─── LANGUAGE SYSTEM ───
+let currentLang = localStorage.getItem('il-lang') || 'en';
+const langToggle = document.getElementById('langToggle');
+
+function applyLang(lang) {
+  currentLang = lang;
+  localStorage.setItem('il-lang', lang);
+  document.documentElement.setAttribute('lang', lang);
+  document.documentElement.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
+  langToggle.textContent = lang === 'ar' ? 'EN' : 'AR';
+  
+  const translations = i18n[lang];
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (translations[key] !== undefined) {
+      el.innerHTML = translations[key];
+    }
+  });
+}
+
+langToggle.addEventListener('click', () => {
+  applyLang(currentLang === 'en' ? 'ar' : 'en');
+});
+
+// Apply on load
+applyLang(currentLang);
+
+// ─── THEME TOGGLE ───
 const sunIcon=`<circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>`;
 const moonIcon=`<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>`;
 let light=localStorage.getItem('il-theme')!=='dark';
@@ -668,14 +892,12 @@ const setIcon=()=>{themeToggle.innerHTML=`<svg width="17" height="17" viewBox="0
 setIcon();
 themeToggle.addEventListener('click',()=>{light=!light;document.documentElement.classList.toggle('light',light);localStorage.setItem('il-theme',light?'light':'dark');setIcon();});
 
-// Scroll reveal
+// ─── SCROLL REVEAL ───
 const obs=new IntersectionObserver(entries=>{entries.forEach((e,i)=>{if(e.isIntersecting){setTimeout(()=>e.target.classList.add('visible'),i*70);obs.unobserve(e.target);}});},{threshold:0.08});
 document.querySelectorAll('.reveal').forEach(r=>obs.observe(r));
 
-// Smooth scroll
+// ─── SMOOTH SCROLL ───
 document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener('click',function(e){e.preventDefault();const t=document.querySelector(this.getAttribute('href'));if(t)t.scrollIntoView({behavior:'smooth',block:'start'});});});
-
-
 </script>
 </body>
 </html>
